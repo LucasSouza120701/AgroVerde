@@ -146,22 +146,45 @@ function update() {
 
     const onGround = player.body.blocked.down;
 
-    // 👉 MOVIMENTO (sempre funciona, no chão e no ar)
+    // 👉 MOVIMENTO X (livre no ar também)
     if (cursors.left.isDown) {
         player.setVelocityX(-200);
         player.setFlipX(true);
+
+        // animação andando
+        walkFrame++;
+        if (walkFrame < 10) player.setTexture('walk1');
+        else if (walkFrame < 20) player.setTexture('walk2');
+        else if (walkFrame < 30) player.setTexture('walk3');
+        else walkFrame = 0;
     }
+
     else if (cursors.right.isDown) {
         player.setVelocityX(200);
         player.setFlipX(false);
-    }
-    else {
-        player.setVelocityX(0);
+
+        // animação andando
+        walkFrame++;
+        if (walkFrame < 10) player.setTexture('walk1');
+        else if (walkFrame < 20) player.setTexture('walk2');
+        else if (walkFrame < 30) player.setTexture('walk3');
+        else walkFrame = 0;
     }
 
-    // 👉 PULO (se estiver no chão)
+    else {
+        player.setVelocityX(0);
+
+        // idle só no chão
+        if (onGround) {
+            idleFrame++;
+            if (idleFrame < 30) player.setTexture('idle1');
+            else if (idleFrame < 60) player.setTexture('idle2');
+            else idleFrame = 0;
+        }
+    }
+
+    // 👉 PULO
     if (cursors.up.isDown && onGround) {
         player.setVelocityY(-500);
     }
-
 }
