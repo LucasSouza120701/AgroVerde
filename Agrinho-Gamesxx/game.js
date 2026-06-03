@@ -201,7 +201,7 @@ function update() {
     }
 
     // 🦘 PULO
-    if (cursors.up.isDown && onGround) {
+    if (cursors.up.isDown && player.body.blocked.down) {
         player.setVelocityY(-500);
     }
 }
