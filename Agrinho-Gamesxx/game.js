@@ -25,34 +25,104 @@ const game = new Phaser.Game(config);
 let player;
 let platforms;
 let cursors;
+let walkFrame = 0;
+let idleFrame = 0;
+let gameStarted = false;
 
 function preload() {
-    
-    this.load.image('idle', 'assets/idle.png');
 
     this.load.image('walk1', 'assets/walk1.png');
-
     this.load.image('walk2', 'assets/walk2.png');
-
     this.load.image('walk3', 'assets/walk3.png');
+    this.load.image('idle1', 'assets/idle1.png');
+    this.load.image('idle2', 'assets/idle2.png');
 
+    this.load.image('sky1', 'assets/sky1.png');
+    this.load.image('sky2', 'assets/sky2.png');
+    this.load.image('sky3', 'assets/sky3.png');
+    this.load.image('sky4', 'assets/sky4.png');
 
-
+    this.load.image('logo', 'assets/logo.png');
+    this.load.image('play', 'assets/play.png');
+    this.load.image('platform', 'assets/platform.png');
+    this.load.image('background1', 'assets/background1.png');
 }
 
 function create() {
 
+
+    const sky = this.add.image(400, 300, 'sky1');
+
+this.time.delayedCall(200, () => {
+    sky.setTexture('sky2');
+});
+
+this.time.delayedCall(500, () => {
+    sky.setTexture('sky3');
+});
+
+this.time.delayedCall(900, () => {
+    sky.setTexture('sky4');
+});
+
+    const logo = this.add.image(400, 180, 'logo');
+    logo.setScale(3.5);
+    const play = this.add.image(400, 400, 'play');
+    play.setScale(4);
+    play.setInteractive();
+
+    const fade = this.add.rectangle(400, 300, 800, 600, 0x000000);
+fade.setAlpha(0);
+
+   play.on('pointerdown', () => {
+
+    this.tweens.add({
+        targets: fade,
+        alpha: 1,
+        duration: 1000,
+
+        onComplete: () => {
+
+            gameStarted = true;
+
+            sky.destroy();
+            logo.destroy();
+            play.destroy();
+
+            const background = this.add.image(400, 300, 'background1');
+background.setDepth(-1);
+
+            player.setVisible(true);
+            platforms.setVisible(true);
+
+            this.tweens.add({
+                targets: fade,
+                alpha: 0,
+                duration: 1000,
+
+                onComplete: () => {
+                    fade.destroy();
+                }
+            });
+
+        }
+    });
+
+});
+
     // plataformas
     platforms = this.physics.add.staticGroup();
 
-    // chão
-    platforms.create(400, 590).setDisplaySize(800, 20).refreshBody();
+   platforms.create(400, 590, 'platform')
+    .setDisplaySize(800, 40)
+    .refreshBody();
 
-    // plataforma no meio
-    platforms.create(400, 450).setDisplaySize(200, 20).refreshBody();
+   platforms.create(400, 450, 'platform')
+    .setDisplaySize(200, 40)
+    .refreshBody();
 
     // jogador
-    player = this.physics.add.sprite(100, 300, 'idle');
+    player = this.physics.add.sprite(100, 300, 'idle1');
 
     player.setScale(2);
 
@@ -62,30 +132,76 @@ function create() {
 
     // colisão
     this.physics.add.collider(player, platforms);
-
+      
+    platforms.setVisible(false);
+    player.setVisible(false);
+    
     // teclado
     cursors = this.input.keyboard.createCursorKeys();
 }
 
 function update() {
 
-    // esquerda
+    if (!gameStarted) {
+        return;
+    }
+
+    player.setVelocityX(0);
+
+    const onGround = player.body.blocked.down;
+    const velocityY = player.body.velocity.y;
+
+    // 🦘 ESTÁ NO AR (pulo/queda)
+    if (!onGround) {
+
+        // só muda se realmente precisar
+        if (player.texture.key !== 'jump') {
+            player.setTexture('jump');
+        }
+
+        return;
+    }
+
+    // 👉 ANDAR ESQUERDA
     if (cursors.left.isDown) {
+
+        player.setFlipX(true);
         player.setVelocityX(-200);
+
+        walkFrame++;
+
+        if (walkFrame < 10) player.setTexture('walk1');
+        else if (walkFrame < 20) player.setTexture('walk2');
+        else if (walkFrame < 30) player.setTexture('walk3');
+        else walkFrame = 0;
     }
 
-    // direita
+    // 👉 ANDAR DIREITA
     else if (cursors.right.isDown) {
+
+        player.setFlipX(false);
         player.setVelocityX(200);
+
+        walkFrame++;
+
+        if (walkFrame < 10) player.setTexture('walk1');
+        else if (walkFrame < 20) player.setTexture('walk2');
+        else if (walkFrame < 30) player.setTexture('walk3');
+        else walkFrame = 0;
     }
 
-    // parado
+    // 😐 IDLE
     else {
-        player.setVelocityX(0);
+
+        idleFrame++;
+
+        if (idleFrame < 30) player.setTexture('idle1');
+        else if (idleFrame < 60) player.setTexture('idle2');
+        else idleFrame = 0;
     }
 
-    // pulo
-    if (cursors.up.isDown && player.body.touching.down) {
+    // 🦘 PULO
+    if (cursors.up.isDown && onGround) {
         player.setVelocityY(-500);
     }
 }
