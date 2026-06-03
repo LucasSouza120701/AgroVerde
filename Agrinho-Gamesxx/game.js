@@ -155,8 +155,8 @@ function update() {
     if (!onGround) {
 
         // só muda se realmente precisar
-        if (player.texture.key !== 'idle') {
-            player.setTexture('idle');
+        if (player.texture.key !== 'idle1') {
+            player.setTexture('idle1');
         }
 
         return;
