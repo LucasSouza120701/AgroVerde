@@ -142,70 +142,55 @@ background.setDepth(-1);
 
 function update() {
 
-    if (!gameStarted) {
-        return;
-    }
-
-    player.setVelocityX(0);
+    if (!gameStarted) return;
 
     const onGround = player.body.blocked.down;
-    const velocityY = player.body.velocity.y;
 
-    // 🦘 ESTÁ NO AR (pulo/queda)
-    if (!onGround) {
+    // 👉 SEMPRE zera X (controle limpo)
+    player.setVelocityX(0);
 
-        // só muda se realmente precisar
-        if (player.texture.key !== 'idle1') {
-            player.setTexture('idle1');
-        }
-
-        return;
-    }
-
-    // 👉 ANDAR ESQUERDA
+    // 👉 MOVIMENTO HORIZONTAL (funciona no ar também)
     if (cursors.left.isDown) {
-       player.setVelocityX(-200);
-    
-
-        player.setFlipX(true);
         player.setVelocityX(-200);
+        player.setFlipX(true);
 
         walkFrame++;
 
-        if (walkFrame < 10) player.setTexture('walk1');
-        else if (walkFrame < 20) player.setTexture('walk2');
-        else if (walkFrame < 30) player.setTexture('walk3');
-        else walkFrame = 0;
+        if (onGround) {
+            if (walkFrame < 10) player.setTexture('walk1');
+            else if (walkFrame < 20) player.setTexture('walk2');
+            else if (walkFrame < 30) player.setTexture('walk3');
+            else walkFrame = 0;
+        }
     }
 
-    // 👉 ANDAR DIREITA
     else if (cursors.right.isDown) {
         player.setVelocityX(200);
-    
-
         player.setFlipX(false);
-        player.setVelocityX(200);
 
         walkFrame++;
 
-        if (walkFrame < 10) player.setTexture('walk1');
-        else if (walkFrame < 20) player.setTexture('walk2');
-        else if (walkFrame < 30) player.setTexture('walk3');
-        else walkFrame = 0;
+        if (onGround) {
+            if (walkFrame < 10) player.setTexture('walk1');
+            else if (walkFrame < 20) player.setTexture('walk2');
+            else if (walkFrame < 30) player.setTexture('walk3');
+            else walkFrame = 0;
+        }
     }
 
-    // 😐 IDLE
     else {
+        // idle só no chão
+        if (onGround) {
+            idleFrame++;
 
-        idleFrame++;
-
-        if (idleFrame < 30) player.setTexture('idle1');
-        else if (idleFrame < 60) player.setTexture('idle2');
-        else idleFrame = 0;
+            if (idleFrame < 30) player.setTexture('idle1');
+            else if (idleFrame < 60) player.setTexture('idle2');
+            else idleFrame = 0;
+        }
     }
 
-    // 🦘 PULO
-    if (cursors.up.isDown && player.body.blocked.down) {
+    // 👉 PULO (sem travar nada)
+    if (cursors.up.isDown && onGround) {
         player.setVelocityY(-500);
     }
 }
