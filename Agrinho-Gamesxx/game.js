@@ -151,15 +151,9 @@ function update() {
     const onGround = player.body.blocked.down;
     const velocityY = player.body.velocity.y;
 
-    // 🦘 ESTÁ NO AR (pulo/queda)
+    //  ESTÁ NO AR (
     if (!onGround) {
 
-        // só muda se realmente precisar
-        if (player.texture.key !== 'jump') {
-            player.setTexture('jump');
-        }
-
-        return;
     }
 
     // 👉 ANDAR ESQUERDA
