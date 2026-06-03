@@ -192,31 +192,32 @@ function update() {
         player.setVelocityY(-500);
     }
 
-    // saída da tela
+// Próxima tela
 if (player.x > 760) {
 
     telasDaFase++;
 
     player.x = 50;
 
-    // passou 2 telas?
+    // A cada 2 telas muda de fase
     if (telasDaFase >= 2) {
 
         faseAtual++;
         telasDaFase = 0;
 
-        // muda o fundo
         if (faseAtual === 2) {
             background.setTexture('background2');
         }
 
-        if (faseAtual === 3) {
+        else if (faseAtual === 3) {
             background.setTexture('background3');
         }
 
-        if (faseAtual === 4) {
+        else if (faseAtual === 4) {
             background.setTexture('background4');
         }
+
+        console.log("FASE", faseAtual);
     }
 }
 }
