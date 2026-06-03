@@ -1,9 +1,14 @@
 const config = {
     type: Phaser.AUTO,
     pixelArt: true,
+    scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
     width: 800,
-    height: 600,
+    height: 600
+},
     backgroundColor: '#87CEEB',
+
 
     physics: {
         default: 'arcade',
@@ -50,15 +55,7 @@ function preload() {
 
 function create() {
 
-this.input.keyboard.on('keydown-F', () => {
 
-    if (this.scale.isFullscreen) {
-        this.scale.stopFullscreen();
-    } else {
-        this.scale.startFullscreen();
-    }
-
-});
 
     // ================= MENU =================
     const sky = this.add.image(400, 300, 'sky1');
