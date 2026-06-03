@@ -147,6 +147,7 @@ function update() {
     }
 
     player.setVelocityX(0);
+
     const onGround = player.body.blocked.down;
     const velocityY = player.body.velocity.y;
 
@@ -154,11 +155,11 @@ function update() {
     if (!onGround) {
 
         // só muda se realmente precisar
-        if (player.texture.key !== 'idle') {
-            player.setTexture('idle');
+        if (player.texture.key !== 'jump') {
+            player.setTexture('jump');
         }
 
-        return; 
+        return;
     }
 
     // 👉 ANDAR ESQUERDA
@@ -198,9 +199,9 @@ function update() {
         else if (idleFrame < 60) player.setTexture('idle2');
         else idleFrame = 0;
     }
-      // 🦘 PULO
+
+    // 🦘 PULO
     if (cursors.up.isDown && onGround) {
         player.setVelocityY(-500);
     }
-
 }
