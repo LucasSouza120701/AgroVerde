@@ -198,5 +198,9 @@ function update() {
         else if (idleFrame < 60) player.setTexture('idle2');
         else idleFrame = 0;
     }
+      // 🦘 PULO
+    if (cursors.up.isDown && onGround) {
+        player.setVelocityY(-500);
+    }
 
 }
