@@ -147,13 +147,18 @@ function update() {
     }
 
     player.setVelocityX(0);
-
     const onGround = player.body.blocked.down;
     const velocityY = player.body.velocity.y;
 
-    //  ESTÁ NO AR (
+    // 🦘 ESTÁ NO AR (pulo/queda)
     if (!onGround) {
 
+        // só muda se realmente precisar
+        if (player.texture.key !== 'idle') {
+            player.setTexture('idle');
+        }
+
+        return; 
     }
 
     // 👉 ANDAR ESQUERDA
