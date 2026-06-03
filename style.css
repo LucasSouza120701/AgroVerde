@@ -147,6 +147,16 @@ footer {
     padding: 1.5rem;
     margin-top: 2rem;
 }
+.botao-jogar {
+    background: green;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
