@@ -34,6 +34,10 @@ let walkFrame = 0;
 let idleFrame = 0;
 let gameStarted = false;
 
+let faseAtual = 1;
+let telasDaFase = 0;
+let background;
+
 function preload() {
 
     this.load.image('walk1', 'assets/walk1.png');
@@ -115,7 +119,7 @@ function create() {
                 logo.destroy();
                 play.destroy();
 
-                const background = this.add.image(400, 300, 'background1');
+                background = this.add.image(400, 300, 'background1');
                 background.setDepth(-1);
 
                 // 🔵 ativa jogo aqui
@@ -183,4 +187,32 @@ function update() {
     if (cursors.up.isDown && onGround) {
         player.setVelocityY(-500);
     }
+
+    // saída da tela
+if (player.x > 760) {
+
+    telasDaFase++;
+
+    player.x = 50;
+
+    // passou 2 telas?
+    if (telasDaFase >= 2) {
+
+        faseAtual++;
+        telasDaFase = 0;
+
+        // muda o fundo
+        if (faseAtual === 2) {
+            background.setTexture('background2');
+        }
+
+        if (faseAtual === 3) {
+            background.setTexture('background3');
+        }
+
+        if (faseAtual === 4) {
+            background.setTexture('background4');
+        }
+    }
+}
 }
