@@ -50,6 +50,16 @@ function preload() {
 
 function create() {
 
+this.input.keyboard.on('keydown-F', () => {
+
+    if (this.scale.isFullscreen) {
+        this.scale.stopFullscreen();
+    } else {
+        this.scale.startFullscreen();
+    }
+
+});
+
     // ================= MENU =================
     const sky = this.add.image(400, 300, 'sky1');
 
