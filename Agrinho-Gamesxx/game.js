@@ -55,6 +55,10 @@ function preload() {
     this.load.image('play', 'assets/play.png');
     this.load.image('platform', 'assets/platform.png');
     this.load.image('background1', 'assets/background1.png');
+    this.load.image('background1', 'assets/background2.png');
+    this.load.image('background1', 'assets/background3.png');
+    this.load.image('background1', 'assets/background4.png');
+
 }
 
 function create() {
