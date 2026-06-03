@@ -200,8 +200,4 @@ function update() {
         else idleFrame = 0;
     }
 
-    // 🦘 PULO
-    if (cursors.up.isDown && onGround) {
-        player.setVelocityY(-500);
-    }
 }
