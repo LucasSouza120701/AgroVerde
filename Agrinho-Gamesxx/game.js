@@ -50,6 +50,7 @@ function preload() {
 
 function create() {
 
+    // ================= MENU =================
     const sky = this.add.image(400, 300, 'sky1');
 
     this.time.delayedCall(200, () => sky.setTexture('sky2'));
@@ -66,7 +67,8 @@ function create() {
     const fade = this.add.rectangle(400, 300, 800, 600, 0x000000);
     fade.setAlpha(0);
 
-    // plataformas
+    // ================= JOGO (cria mas só ativa depois) =================
+
     platforms = this.physics.add.staticGroup();
 
     platforms.create(400, 590, 'platform')
@@ -77,9 +79,7 @@ function create() {
         .setDisplaySize(200, 40)
         .refreshBody();
 
-    // jogador
     player = this.physics.add.sprite(100, 300, 'idle1');
-
     player.setScale(2);
     player.setBounce(0.1);
     player.setCollideWorldBounds(true);
@@ -88,12 +88,17 @@ function create() {
 
     cursors = this.input.keyboard.createCursorKeys();
 
+    // 🔴 DESATIVA NO COMEÇO (evita bug visual)
+    player.setActive(false).setVisible(false);
+    platforms.setActive(false).setVisible(false);
+
+    // ================= START GAME =================
     play.on('pointerdown', () => {
 
         this.tweens.add({
             targets: fade,
             alpha: 1,
-            duration: 1000,
+            duration: 800,
 
             onComplete: () => {
 
@@ -106,14 +111,16 @@ function create() {
                 const background = this.add.image(400, 300, 'background1');
                 background.setDepth(-1);
 
+                // 🔵 ativa jogo aqui
+                player.setActive(true).setVisible(true);
+                platforms.setActive(true).setVisible(true);
+
                 this.tweens.add({
                     targets: fade,
                     alpha: 0,
-                    duration: 1000,
+                    duration: 800,
 
-                    onComplete: () => {
-                        fade.destroy();
-                    }
+                    onComplete: () => fade.destroy()
                 });
             }
         });
@@ -126,14 +133,13 @@ function update() {
 
     const onGround = player.body.blocked.down;
 
-    // 👉 MOVIMENTO (funciona no ar e chão)
+    // 👉 MOVIMENTO
     if (cursors.left.isDown) {
 
         player.setVelocityX(-200);
         player.setFlipX(true);
 
         walkFrame++;
-
         if (walkFrame < 10) player.setTexture('walk1');
         else if (walkFrame < 20) player.setTexture('walk2');
         else if (walkFrame < 30) player.setTexture('walk3');
@@ -146,7 +152,6 @@ function update() {
         player.setFlipX(false);
 
         walkFrame++;
-
         if (walkFrame < 10) player.setTexture('walk1');
         else if (walkFrame < 20) player.setTexture('walk2');
         else if (walkFrame < 30) player.setTexture('walk3');
