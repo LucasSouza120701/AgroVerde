@@ -164,6 +164,8 @@ function update() {
 
     // 👉 ANDAR ESQUERDA
     if (cursors.left.isDown) {
+       player.setVelocityX(-200);
+    
 
         player.setFlipX(true);
         player.setVelocityX(-200);
@@ -178,6 +180,8 @@ function update() {
 
     // 👉 ANDAR DIREITA
     else if (cursors.right.isDown) {
+        player.setVelocityX(200);
+    
 
         player.setFlipX(false);
         player.setVelocityX(200);
