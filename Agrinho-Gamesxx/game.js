@@ -37,6 +37,85 @@ let gameStarted = false;
 let faseAtual = 1;
 let telasDaFase = 0;
 let background;
+let telaAtual = 1;
+
+function criarTela(numero) {
+
+    platforms.clear(true, true);
+
+    // FASE 1 - TELA 1
+    if (numero === 1) {
+
+        platforms.create(400, 590, 'platform')
+            .setDisplaySize(800, 40)
+            .refreshBody();
+
+        platforms.create(400, 450, 'platform')
+            .setDisplaySize(200, 40)
+            .refreshBody();
+    }
+
+    // FASE 1 - TELA 2
+    else if (numero === 2) {
+
+        platforms.create(400, 590, 'platform')
+            .setDisplaySize(800, 40)
+            .refreshBody();
+
+        platforms.create(200, 500, 'platform')
+            .setDisplaySize(120, 40)
+            .refreshBody();
+
+        platforms.create(400, 400, 'platform')
+            .setDisplaySize(120, 40)
+            .refreshBody();
+
+        platforms.create(600, 300, 'platform')
+            .setDisplaySize(120, 40)
+            .refreshBody();
+    }
+
+    // FASE 2 - TELA 1
+    else if (numero === 3) {
+
+        platforms.create(400, 590, 'platform')
+            .setDisplaySize(800, 40)
+            .refreshBody();
+
+        platforms.create(150, 450, 'platform')
+            .setDisplaySize(150, 40)
+            .refreshBody();
+
+        platforms.create(500, 350, 'platform')
+            .setDisplaySize(150, 40)
+            .refreshBody();
+    }
+
+    // FASE 2 - TELA 2
+    else if (numero === 4) {
+
+        platforms.create(400, 590, 'platform')
+            .setDisplaySize(800, 40)
+            .refreshBody();
+
+        platforms.create(250, 420, 'platform')
+            .setDisplaySize(120, 40)
+            .refreshBody();
+
+        platforms.create(550, 420, 'platform')
+            .setDisplaySize(120, 40)
+            .refreshBody();
+    }
+
+    // FASE 3+
+    else {
+
+        platforms.create(400, 590, 'platform')
+            .setDisplaySize(800, 40)
+            .refreshBody();
+    }
+}
+
 
 function preload() {
 
@@ -86,18 +165,12 @@ function create() {
 
     platforms = this.physics.add.staticGroup();
 
-    platforms.create(400, 590, 'platform')
-        .setDisplaySize(800, 40)
-        .refreshBody();
-
-    platforms.create(400, 450, 'platform')
-        .setDisplaySize(200, 40)
-        .refreshBody();
+    criarTela(1);
 
     player = this.physics.add.sprite(100, 300, 'idle1');
     player.setScale(2);
     player.setBounce(0.1);
-    player.setCollideWorldBounds(true);
+    player.setCollideWorldBounds(false);
 
     this.physics.add.collider(player, platforms);
 
@@ -194,11 +267,15 @@ function update() {
     }
 
 // Próxima tela
-if (player.x > 760) {
+if (player.x >= 780) {
 
     telasDaFase++;
 
+    telaAtual++;
+
     player.x = 50;
+
+    criarTela(telaAtual);
 
     // A cada 2 telas muda de fase
     if (telasDaFase >= 2) {
