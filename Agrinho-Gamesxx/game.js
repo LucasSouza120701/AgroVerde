@@ -299,8 +299,7 @@ if (player.x >= 740) {
 
         console.log("FASE", faseAtual);
     }
-}
-if (player.x < 0) {
+    if (player.x < 0) {
     player.x = 0;
 }
 }
