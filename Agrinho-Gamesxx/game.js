@@ -170,7 +170,7 @@ function create() {
     player = this.physics.add.sprite(100, 300, 'idle1');
     player.setScale(2);
     player.setBounce(0.1);
-    player.setCollideWorldBounds(false);
+    player.setCollideWorldBounds(true);
 
     this.physics.add.collider(player, platforms);
 
@@ -267,7 +267,7 @@ function update() {
     }
 
 // Próxima tela
-if (player.x >= 780) {
+if (player.x >= 740) {
 
     telasDaFase++;
 
@@ -297,5 +297,8 @@ if (player.x >= 780) {
 
         console.log("FASE", faseAtual);
     }
+}
+if (player.x < 0) {
+    player.x = 0;
 }
 }
