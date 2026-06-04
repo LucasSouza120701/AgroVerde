@@ -229,6 +229,7 @@ function update() {
         player.setFlipX(true);
 
         walkFrame++;
+
         if (walkFrame < 10) player.setTexture('walk1');
         else if (walkFrame < 20) player.setTexture('walk2');
         else if (walkFrame < 30) player.setTexture('walk3');
@@ -241,6 +242,7 @@ function update() {
         player.setFlipX(false);
 
         walkFrame++;
+
         if (walkFrame < 10) player.setTexture('walk1');
         else if (walkFrame < 20) player.setTexture('walk2');
         else if (walkFrame < 30) player.setTexture('walk3');
@@ -266,37 +268,36 @@ function update() {
         player.setVelocityY(-500);
     }
 
-// Próxima tela
-if (player.x >= 740) {
-    // próxima tela
-}
+    // 👉 PRÓXIMA TELA
+    if (player.x >= 740) {
 
-    telasDaFase++;
+        telasDaFase++;
+        telaAtual++;
 
-    telaAtual++;
+        player.x = 50;
+        player.y = 300;
 
-    player.x = 50;
+        criarTela(telaAtual);
 
-    criarTela(telaAtual);
+        // A cada 2 telas muda de fase
+        if (telasDaFase >= 2) {
 
-    // A cada 2 telas muda de fase
-    if (telasDaFase >= 2) {
+            faseAtual++;
+            telasDaFase = 0;
 
-        faseAtual++;
-        telasDaFase = 0;
+            if (faseAtual === 2) {
+                background.setTexture('background2');
+            }
 
-        if (faseAtual === 2) {
-            background.setTexture('background2');
+            else if (faseAtual === 3) {
+                background.setTexture('background3');
+            }
+
+            else if (faseAtual === 4) {
+                background.setTexture('background4');
+            }
+
+            console.log("FASE", faseAtual);
         }
-
-        else if (faseAtual === 3) {
-            background.setTexture('background3');
-        }
-
-        else if (faseAtual === 4) {
-            background.setTexture('background4');
-        }
-
-        console.log("FASE", faseAtual);
     }
 }
