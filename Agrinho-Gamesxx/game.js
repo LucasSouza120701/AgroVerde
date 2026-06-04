@@ -267,7 +267,7 @@ function update() {
     }
 
 // Próxima tela
-if (player.x >= 740) {
+if (player.x >= 740)
 
     telasDaFase++;
 
