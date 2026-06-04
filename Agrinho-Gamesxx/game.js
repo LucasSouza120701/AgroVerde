@@ -55,9 +55,9 @@ function preload() {
     this.load.image('play', 'assets/play.png');
     this.load.image('platform', 'assets/platform.png');
     this.load.image('background1', 'assets/background1.png');
-    this.load.image('background1', 'assets/background2.png');
-    this.load.image('background1', 'assets/background3.png');
-    this.load.image('background1', 'assets/background4.png');
+    this.load.image('background2', 'assets/background2.png');
+    this.load.image('background3', 'assets/background3.png');
+    this.load.image('background4', 'assets/background4.png');
 
 }
 
@@ -124,9 +124,7 @@ function create() {
                 play.destroy();
 
                 background = this.add.image(400, 300, 'background1');
-                this.time.delayedCall(3000, () => {
-    background.setTexture('background2');
-});
+                
                 background.setDepth(-1);
 
                 // 🔵 ativa jogo aqui
