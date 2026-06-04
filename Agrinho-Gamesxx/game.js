@@ -124,6 +124,9 @@ function create() {
                 play.destroy();
 
                 background = this.add.image(400, 300, 'background1');
+                this.time.delayedCall(3000, () => {
+    background.setTexture('background2');
+});
                 background.setDepth(-1);
 
                 // 🔵 ativa jogo aqui
