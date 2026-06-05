@@ -176,7 +176,7 @@ function create() {
     player.setCollideWorldBounds(true);
 
     lagarta = this.physics.add.sprite(600, 520, 'lagarta');
-    lagarta.setScale(0.5);
+    lagarta.setScale(1);
     lagarta.body.allowGravity = false;
     lagarta.setVisible(false);
 
