@@ -94,17 +94,17 @@ function criarTela(numero) {
     // FASE 2 - TELA 2
     else if (numero === 4) {
 
-        platforms.create(400, 590, 'platform')
-            .setDisplaySize(800, 40)
-            .refreshBody();
+         platforms.create(400, 590, 'platform')
+        .setDisplaySize(800, 40)
+        .refreshBody();
 
-        platforms.create(250, 420, 'platform')
-            .setDisplaySize(120, 40)
-            .refreshBody();
+    platforms.create(300, 470, 'platform')
+        .setDisplaySize(140, 40)
+        .refreshBody();
 
-        platforms.create(550, 420, 'platform')
-            .setDisplaySize(120, 40)
-            .refreshBody();
+    platforms.create(520, 360, 'platform')
+        .setDisplaySize(140, 40)
+        .refreshBody();
     }
 
     // FASE 3+
