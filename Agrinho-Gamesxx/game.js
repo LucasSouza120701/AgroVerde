@@ -176,8 +176,9 @@ function create() {
     player.setCollideWorldBounds(true);
 
     lagarta = this.physics.add.sprite(600, 520, 'lagarta');
-    lagarta.setScale(2);
+    lagarta.setScale(0.5);
     lagarta.body.allowGravity = false;
+    lagarta.setVisible(false);
 
     this.physics.add.collider(player, platforms);
 
@@ -210,6 +211,7 @@ function create() {
                 // 🔵 ativa jogo aqui
                 player.setActive(true).setVisible(true);
                 platforms.setActive(true).setVisible(true);
+                lagarta.setVisible(true);
 
                 this.tweens.add({
                     targets: fade,
