@@ -38,6 +38,7 @@ let faseAtual = 1;
 let telasDaFase = 0;
 let background;
 let telaAtual = 1;
+let lagarta;
 
 function criarTela(numero) {
 
@@ -137,6 +138,8 @@ function preload() {
     this.load.image('background2', 'assets/background2.png');
     this.load.image('background3', 'assets/background3.png');
     this.load.image('background4', 'assets/background4.png');
+    this.load.image('lagarta', 'assets/lagarta.png');
+
 
 }
 
@@ -171,6 +174,10 @@ function create() {
     player.setScale(2);
     player.setBounce(0.1);
     player.setCollideWorldBounds(true);
+
+    lagarta = this.physics.add.sprite(600, 520, 'lagarta');
+    lagarta.setScale(2);
+    lagarta.body.allowGravity = false;
 
     this.physics.add.collider(player, platforms);
 
