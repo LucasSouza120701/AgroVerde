@@ -98,11 +98,11 @@ function criarTela(numero) {
         .setDisplaySize(800, 40)
         .refreshBody();
 
-    platforms.create(300, 470, 'platform')
+         platforms.create(300, 470, 'platform')
         .setDisplaySize(140, 40)
         .refreshBody();
 
-    platforms.create(520, 360, 'platform')
+         platforms.create(520, 360, 'platform')
         .setDisplaySize(140, 40)
         .refreshBody();
     }
