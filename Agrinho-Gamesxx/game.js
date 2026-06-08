@@ -213,7 +213,6 @@ function create() {
                 // 🔵 ativa jogo aqui
                 player.setActive(true).setVisible(true);
                 platforms.setActive(true).setVisible(true);
-                lagarta.setVisible(true);
 
                 this.tweens.add({
                     targets: fade,
@@ -302,6 +301,9 @@ function update() {
 
             else if (faseAtual === 3) {
                 background.setTexture('background3');
+
+                lagarta.setActive(true);
+                 lagarta.setVisible(true);
             }
 
             else if (faseAtual === 4) {
