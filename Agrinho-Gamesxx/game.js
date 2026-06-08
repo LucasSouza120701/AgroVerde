@@ -178,6 +178,8 @@ function create() {
     lagarta = this.physics.add.sprite(600, 520, 'lagarta');
     lagarta.setScale(1.5);
     lagarta.body.allowGravity = false;
+
+    lagarta.setActive(false);
     lagarta.setVisible(false);
 
     this.physics.add.collider(player, platforms);
