@@ -39,6 +39,12 @@ let telasDaFase = 0;
 let background;
 let telaAtual = 1;
 let lagarta;
+let vidas = 5;
+let barraVida;
+let tomandoDano = false;
+
+
+
 
 function criarTela(numero) {
 
@@ -168,6 +174,9 @@ function create() {
 
     const fade = this.add.rectangle(400, 300, 800, 600, 0x000000);
     fade.setAlpha(0);
+    barraVida = this.add.image(120, 40, 'vida5');
+    barraVida.setScale(0.6);
+    barraVida.setVisible(false);
 
     // ================= JOGO (cria mas só ativa depois) =================
 
@@ -179,6 +188,7 @@ function create() {
     player.setScale(2);
     player.setBounce(0.1);
     player.setCollideWorldBounds(true);
+    
 
     lagarta = this.physics.add.sprite(600, 550, 'lagarta');
     lagarta.setScale(1.5);
@@ -188,6 +198,8 @@ function create() {
     lagarta.setVisible(false);
 
     this.physics.add.collider(player, platforms);
+
+    this.physics.add.overlap(player, lagarta, perderVida, null, this);
 
     cursors = this.input.keyboard.createCursorKeys();
 
@@ -219,6 +231,8 @@ function create() {
                 player.setActive(true).setVisible(true);
                 platforms.setActive(true).setVisible(true);
 
+                barraVida.setVisible(true);
+
                 this.tweens.add({
                     targets: fade,
                     alpha: 0,
@@ -229,6 +243,44 @@ function create() {
             }
         });
     });
+}
+function perderVida() {
+
+    if (tomandoDano) return;
+
+    tomandoDano = true;
+
+    vidas--;
+
+    if (vidas < 0) {
+        vidas = 0;
+    }
+
+    barraVida.setTexture('vida' + vidas);
+
+    player.x = 50;
+    player.y = 300;
+
+    if (vidas === 0) {
+        vidas = 5;
+        barraVida.setTexture('vida5');
+
+        faseAtual = 1;
+        telasDaFase = 0;
+        telaAtual = 1;
+
+        background.setTexture('background1');
+        criarTela(1);
+
+        lagarta.disableBody(true, true);
+
+        player.x = 50;
+        player.y = 300;
+    }
+
+    setTimeout(() => {
+        tomandoDano = false;
+    }, 1000);
 }
 
 function update() {
