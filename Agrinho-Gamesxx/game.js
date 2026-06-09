@@ -159,7 +159,7 @@ function create() {
 
 
     // ================= MENU =================
-      const sky = this.add.image(400, 300, 'sky1');
+    const sky = this.add.image(400, 300, 'sky1');
 
     this.time.delayedCall(200, () => sky.setTexture('sky2'));
     this.time.delayedCall(500, () => sky.setTexture('sky3'));
