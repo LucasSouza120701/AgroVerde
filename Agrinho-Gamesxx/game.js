@@ -174,8 +174,8 @@ function create() {
 
     const fade = this.add.rectangle(400, 300, 800, 600, 0x000000);
     fade.setAlpha(0);
-    barraVida = this.add.image(120, 40, 'vida5');
-    barraVida.setScale(0.6);
+    barraVida = this.add.image(680, 40, 'vida5');
+    barraVida.setScale(1);
     barraVida.setVisible(false);
 
     // ================= JOGO (cria mas só ativa depois) =================
