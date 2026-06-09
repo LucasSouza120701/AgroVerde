@@ -139,7 +139,12 @@ function preload() {
     this.load.image('background3', 'assets/background3.png');
     this.load.image('background4', 'assets/background4.png');
     this.load.image('lagarta', 'assets/lagarta.png');
-
+    this.load.image('vida5', 'assets/vida5.png');
+    this.load.image('vida4', 'assets/vida4.png');
+    this.load.image('vida3', 'assets/vida3.png');
+    this.load.image('vida2', 'assets/vida2.png');
+    this.load.image('vida1', 'assets/vida1.png');
+    this.load.image('vida0', 'assets/vida0.png');
 
 }
 
