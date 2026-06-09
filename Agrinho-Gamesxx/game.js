@@ -39,6 +39,7 @@ let telasDaFase = 0;
 let background;
 let telaAtual = 1;
 let lagarta;
+let musica;
 let vidas = 5;
 let barraVida;
 let tomandoDano = false;
@@ -151,6 +152,7 @@ function preload() {
     this.load.image('vida2', 'assets/vida2.png');
     this.load.image('vida1', 'assets/vida1.png');
     this.load.image('vida0', 'assets/vida0.png');
+    this.load.audio('musica', 'assets/musica.mp3');
 
 }
 
@@ -174,6 +176,10 @@ function create() {
 
     const fade = this.add.rectangle(400, 300, 800, 600, 0x000000);
     fade.setAlpha(0);
+    musica = this.sound.add('musica', {
+    loop: true,
+    volume: 0.4
+});
     barraVida = this.add.image(680, 40, 'vida5');
     barraVida.setScale(1);
     barraVida.setVisible(false);
@@ -232,6 +238,8 @@ function create() {
                 platforms.setActive(true).setVisible(true);
 
                 barraVida.setVisible(true);
+                
+                musica.play();
 
                 this.tweens.add({
                     targets: fade,
