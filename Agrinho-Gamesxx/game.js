@@ -155,7 +155,9 @@ function preload() {
     this.load.image('vida0', 'assets/vida0.png');
     this.load.audio('musica', 'assets/musica.mp3');
     this.load.audio('dano', 'assets/dano.wav');
-
+    this.load.image('cutscene1', 'assets/cutscene1.png');
+    this.load.image('cutscene2', 'assets/cutscene2.png');
+    this.load.image('skip', 'assets/skip.png');
 }
 
 function create() {
