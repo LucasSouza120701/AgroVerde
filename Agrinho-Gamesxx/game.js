@@ -200,6 +200,8 @@ function create() {
     lagarta.setScale(1.5);
     lagarta.body.allowGravity = false;
 
+    lagarta.disableBody(true, true);
+
     lagarta.setActive(false);
     lagarta.setVisible(false);
 
@@ -367,8 +369,7 @@ function update() {
             else if (faseAtual === 3) {
                 background.setTexture('background3');
 
-                lagarta.setActive(true);
-                 lagarta.setVisible(true);
+                lagarta.enableBody(true, 600, 550, true, true);
             }
 
             else if (faseAtual === 4) {
