@@ -48,6 +48,10 @@ let fundoInvertido = false;
 
 let somDano;
 
+let cutscene;
+let botaoPular;
+let etapaCutscene = 1;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -157,7 +161,7 @@ function preload() {
     this.load.audio('dano', 'assets/dano.wav');
     this.load.image('cutscene1', 'assets/cutscene1.png');
     this.load.image('cutscene2', 'assets/cutscene2.png');
-
+    this.load.image('skip', 'assets/skip.png');
 }
 
 function create() {
@@ -223,44 +227,61 @@ function create() {
     platforms.setActive(false).setVisible(false);
 
     // ================= START GAME =================
+    
     play.on('pointerdown', () => {
 
-        this.tweens.add({
-            targets: fade,
-            alpha: 1,
-            duration: 800,
+    const scene = this;
 
-            onComplete: () => {
+    sky.destroy();
+    logo.destroy();
+    play.destroy();
 
-                gameStarted = true;
+    const escuro = scene.add.rectangle(400, 300, 800, 600, 0x000000);
+    escuro.setAlpha(0.75);
 
-                sky.destroy();
-                logo.destroy();
-                play.destroy();
+    cutscene = scene.add.image(400, 300, 'cutscene1');
 
-                background = this.add.image(400, 300, 'background1');
-                
-                background.setDepth(-1);
+    botaoPular = scene.add.image(700, 80, 'skip');
+    botaoPular.setInteractive();
 
-                // 🔵 ativa jogo aqui
-                player.setActive(true).setVisible(true);
-                platforms.setActive(true).setVisible(true);
+    cutscene.setInteractive();
 
-                barraVida.setVisible(true);
-                
-                musica.play();
+    cutscene.on('pointerdown', () => {
 
-                this.tweens.add({
-                    targets: fade,
-                    alpha: 0,
-                    duration: 800,
-
-                    onComplete: () => fade.destroy()
-                });
-            }
-        });
+        if (etapaCutscene === 1) {
+            etapaCutscene = 2;
+            cutscene.setTexture('cutscene2');
+        } else {
+            iniciarJogo();
+        }
     });
+
+    botaoPular.on('pointerdown', () => {
+        iniciarJogo();
+    });
+
+    function iniciarJogo() {
+
+        escuro.destroy();
+        cutscene.destroy();
+        botaoPular.destroy();
+
+        gameStarted = true;
+
+        background = scene.add.image(400, 300, 'background1');
+        background.setDepth(-1);
+
+        player.setActive(true).setVisible(true);
+        platforms.setActive(true).setVisible(true);
+
+        barraVida.setVisible(true);
+
+        musica.play();
+    }
+});
+
 }
+
 function perderVida() {
 
     if (tomandoDano) return;
