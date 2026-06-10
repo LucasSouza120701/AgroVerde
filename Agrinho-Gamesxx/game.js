@@ -241,8 +241,12 @@ function create() {
 
     cutscene = scene.add.image(400, 300, 'cutscene1');
     cutscene.setDisplaySize(800, 600);
+    cutscene.setDepth(5);
+    cutscene.setInteractive();
 
     botaoPular = scene.add.image(700, 80, 'skip');
+    botaoPular.setScale(0.8);
+    botaoPular.setDepth(10);
     botaoPular.setInteractive();
 
     cutscene.setInteractive();
