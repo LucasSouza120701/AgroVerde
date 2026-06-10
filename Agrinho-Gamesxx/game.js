@@ -157,7 +157,7 @@ function preload() {
     this.load.audio('dano', 'assets/dano.wav');
     this.load.image('cutscene1', 'assets/cutscene1.png');
     this.load.image('cutscene2', 'assets/cutscene2.png');
-    
+
 }
 
 function create() {
