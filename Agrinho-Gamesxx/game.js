@@ -46,6 +46,7 @@ let tomandoDano = false;
 let fundoInvertido = false;
 
 
+let somDano;
 
 function criarTela(numero) {
 
@@ -153,6 +154,7 @@ function preload() {
     this.load.image('vida1', 'assets/vida1.png');
     this.load.image('vida0', 'assets/vida0.png');
     this.load.audio('musica', 'assets/musica.mp3');
+    this.load.audio('dano', 'assets/dano.wav');
 
 }
 
