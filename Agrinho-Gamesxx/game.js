@@ -43,7 +43,7 @@ let musica;
 let vidas = 5;
 let barraVida;
 let tomandoDano = false;
-
+let fundoInvertido = false;
 
 
 
@@ -355,6 +355,9 @@ function update() {
         player.y = 300;
 
         criarTela(telaAtual);
+
+        fundoInvertido = !fundoInvertido;
+        background.setFlipX(fundoInvertido);
 
         // A cada 2 telas muda de fase
         if (telasDaFase >= 2) {
