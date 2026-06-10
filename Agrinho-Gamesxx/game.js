@@ -245,26 +245,20 @@ function create() {
     cutscene.setInteractive();
 
     botaoPular = scene.add.image(700, 80, 'skip');
-    botaoPular.setScale(0.8);
+    botaoPular.setScale(0.7);
     botaoPular.setDepth(10);
     botaoPular.setInteractive();
 
-    cutscene.setInteractive();
-
-    cutscene.on('pointerdown', () => {
-
-        if (etapaCutscene === 1) {
-            etapaCutscene = 2;
-            cutscene.setTexture('cutscene2');
-            cutscene.setDisplaySize(800, 600)
-        } else {
-            iniciarJogo();
-        }
-    });
-
     botaoPular.on('pointerdown', () => {
+
+    if (etapaCutscene === 1) {
+        etapaCutscene = 2;
+        cutscene.setTexture('cutscene2');
+        cutscene.setDisplaySize(800, 600);
+    } else {
         iniciarJogo();
-    });
+    }
+});
 
     function iniciarJogo() {
 
