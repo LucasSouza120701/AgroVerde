@@ -182,6 +182,9 @@ function create() {
     loop: true,
     volume: 0.4
 });
+    somDano = this.sound.add('dano', {
+    volume: 0.8
+});
     barraVida = this.add.image(680, 40, 'vida5');
     barraVida.setScale(1);
     barraVida.setVisible(false);
@@ -259,6 +262,8 @@ function create() {
 function perderVida() {
 
     if (tomandoDano) return;
+
+    somDano.play();
 
     tomandoDano = true;
 
