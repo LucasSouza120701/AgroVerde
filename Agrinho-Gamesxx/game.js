@@ -240,6 +240,7 @@ function create() {
     escuro.setAlpha(0.75);
 
     cutscene = scene.add.image(400, 300, 'cutscene1');
+    cutscene.setDisplaySize(800, 600);
 
     botaoPular = scene.add.image(700, 80, 'skip');
     botaoPular.setInteractive();
@@ -251,6 +252,7 @@ function create() {
         if (etapaCutscene === 1) {
             etapaCutscene = 2;
             cutscene.setTexture('cutscene2');
+            cutscene.setDisplaySize(800, 600)
         } else {
             iniciarJogo();
         }
