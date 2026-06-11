@@ -270,7 +270,7 @@ function create() {
     cutscene.setInteractive();
 
     botaoPular = scene.add.image(700, 80, 'skip');
-    botaoPular.setScale(0.7);
+    botaoPular.setScale(2);
     botaoPular.setDepth(10);
     botaoPular.setInteractive();
 
