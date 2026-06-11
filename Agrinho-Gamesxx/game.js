@@ -59,6 +59,8 @@ let attackFrame = 0;
 
 let spaceKey;
 
+let lagartaViva = true;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -310,6 +312,26 @@ function create() {
 });
 
 }
+function atacarLagarta() {
+
+    if (!lagartaViva) return;
+
+    const distancia = Phaser.Math.Distance.Between(
+        player.x,
+        player.y,
+        lagarta.x,
+        lagarta.y
+    );
+
+    if (distancia < 120) {
+
+        lagarta.disableBody(true, true);
+
+        lagartaViva = false;
+
+        console.log("LAGARTA MORTA!");
+    }
+}
 
 function pegarEspada(player, espada) {
 
@@ -366,9 +388,12 @@ function update() {
     if (!gameStarted) return;
 
     const onGround = player.body.blocked.down;
-    if (Phaser.Input.Keyboard.JustDown(spaceKey) && temEspada && !atacando) {
+   if (Phaser.Input.Keyboard.JustDown(spaceKey) && temEspada && !atacando) {
+
     atacando = true;
     attackFrame = 0;
+
+    atacarLagarta();
 }
 if (atacando) {
 
