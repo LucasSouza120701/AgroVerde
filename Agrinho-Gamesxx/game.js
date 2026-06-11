@@ -57,6 +57,8 @@ let temEspada = false;
 let atacando = false;
 let attackFrame = 0;
 
+let spaceKey;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -245,6 +247,7 @@ function create() {
     this.physics.add.overlap(player, espada, pegarEspada, null, this);
 
     cursors = this.input.keyboard.createCursorKeys();
+    spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     // 🔴 DESATIVA NO COMEÇO (evita bug visual)
     player.setActive(false).setVisible(false);
@@ -363,6 +366,33 @@ function update() {
     if (!gameStarted) return;
 
     const onGround = player.body.blocked.down;
+    if (Phaser.Input.Keyboard.JustDown(spaceKey) && temEspada && !atacando) {
+    atacando = true;
+    attackFrame = 0;
+}
+if (atacando) {
+
+    attackFrame++;
+
+    if (attackFrame < 6) {
+        player.setTexture('ataque1');
+    }
+    else if (attackFrame < 12) {
+        player.setTexture('ataque2');
+    }
+    else if (attackFrame < 18) {
+        player.setTexture('ataque3');
+    }
+    else if (attackFrame < 24) {
+        player.setTexture('ataque4');
+    }
+    else {
+        atacando = false;
+        attackFrame = 0;
+    }
+
+    return;
+}
 
     // 👉 MOVIMENTO
     if (cursors.left.isDown) {
