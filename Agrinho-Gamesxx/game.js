@@ -186,13 +186,19 @@ function create() {
     this.time.delayedCall(200, () => sky.setTexture('sky2'));
     this.time.delayedCall(500, () => sky.setTexture('sky3'));
     this.time.delayedCall(900, () => sky.setTexture('sky4'));
+    this.time.delayedCall(900, () => {
+    sky.setTexture('sky4');
+
+    play.setVisible(true);
+    play.setInteractive();
+});
 
     const logo = this.add.image(400, 180, 'logo');
     logo.setScale(3.5);
 
     const play = this.add.image(400, 400, 'play');
     play.setScale(4);
-    play.setInteractive();
+    play.setVisible(false);
 
     const fade = this.add.rectangle(400, 300, 800, 600, 0x000000);
     fade.setAlpha(0);
@@ -236,6 +242,7 @@ function create() {
     this.physics.add.collider(player, platforms);
 
     this.physics.add.overlap(player, lagarta, perderVida, null, this);
+    this.physics.add.overlap(player, espada, pegarEspada, null, this);
 
     cursors = this.input.keyboard.createCursorKeys();
 
@@ -299,6 +306,15 @@ function create() {
     }
 });
 
+}
+
+function pegarEspada(player, espada) {
+
+    temEspada = true;
+
+    espada.destroy();
+
+    console.log("PEGOU A ESPADA!");
 }
 
 function perderVida() {
