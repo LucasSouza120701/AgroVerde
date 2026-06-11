@@ -52,6 +52,11 @@ let cutscene;
 let botaoPular;
 let etapaCutscene = 1;
 
+let espada;
+let temEspada = false;
+let atacando = false;
+let attackFrame = 0;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -162,7 +167,14 @@ function preload() {
     this.load.image('cutscene1', 'assets/cutscene1.png');
     this.load.image('cutscene2', 'assets/cutscene2.png');
     this.load.image('skip', 'assets/skip.png');
+    this.load.image('espada', 'assets/espada.png');
+    this.load.image('ataque1', 'assets/ataque1.png');
+    this.load.image('ataque2', 'assets/ataque2.png');
+    this.load.image('ataque3', 'assets/ataque3.png');
+    this.load.image('ataque4', 'assets/ataque4.png');
+
 }
+
 
 function create() {
 
@@ -205,6 +217,11 @@ function create() {
     player.setScale(2);
     player.setBounce(0.1);
     player.setCollideWorldBounds(true);
+
+    // ⚔️ ESPADA
+   espada = this.physics.add.sprite(400, 400, 'espada');
+   espada.setScale(0.8);
+   espada.body.allowGravity = false;
     
 
     lagarta = this.physics.add.sprite(600, 550, 'lagarta');
@@ -225,6 +242,7 @@ function create() {
     // 🔴 DESATIVA NO COMEÇO (evita bug visual)
     player.setActive(false).setVisible(false);
     platforms.setActive(false).setVisible(false);
+    espada.setActive(false).setVisible(false);
 
     // ================= START GAME =================
     
@@ -273,6 +291,7 @@ function create() {
 
         player.setActive(true).setVisible(true);
         platforms.setActive(true).setVisible(true);
+        espada.setActive(true).setVisible(true);
 
         barraVida.setVisible(true);
 
