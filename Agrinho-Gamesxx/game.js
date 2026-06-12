@@ -61,6 +61,8 @@ let spaceKey;
 
 let lagartaViva = true;
 
+let direcaoLagarta = 1;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -387,6 +389,22 @@ function update() {
 
     if (!gameStarted) return;
 
+    // 🐛 MOVIMENTO DA LAGARTA
+if (lagarta && lagarta.active) {
+
+    if (lagarta.x > 700) {
+        direcaoLagarta = -1;
+        lagarta.setFlipX(true);
+    }
+
+    if (lagarta.x < 500) {
+        direcaoLagarta = 1;
+        lagarta.setFlipX(false);
+    }
+
+    lagarta.setVelocityX(80 * direcaoLagarta);
+}
+
     const onGround = player.body.blocked.down;
    if (Phaser.Input.Keyboard.JustDown(spaceKey) && temEspada && !atacando) {
 
@@ -493,6 +511,10 @@ if (atacando) {
                 background.setTexture('background3');
 
                 lagarta.enableBody(true, 600, 550, true, true);
+
+                lagarta.body.allowGravity = false;
+                lagarta.setVelocityX(80);
+
             }
 
             else if (faseAtual === 4) {
