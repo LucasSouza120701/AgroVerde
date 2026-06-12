@@ -325,7 +325,7 @@ function atacarLagarta() {
         lagarta.y
     );
 
-    if (distancia < 120) {
+    if (distancia < 200) {
 
         lagarta.disableBody(true, true);
 
