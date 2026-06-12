@@ -244,8 +244,8 @@ function create() {
     lagarta.setVisible(false);
 
     // 🐻 URSO NPC
-   urso = this.physics.add.sprite(600, 520, 'urso1');
-   urso.setScale(1);
+   urso = this.physics.add.sprite(600, 550, 'urso1');
+   urso.setScale(1,5);
    urso.body.allowGravity = false;
 
 urso.disableBody(true, true);
@@ -330,7 +330,7 @@ function atacarLagarta() {
         lagarta.y
     );
 
-    if (distancia < 210) {
+    if (distancia < 215) {
 
         lagarta.disableBody(true, true);
 
