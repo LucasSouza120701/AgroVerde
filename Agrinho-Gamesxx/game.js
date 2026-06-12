@@ -514,6 +514,16 @@ if (atacando) {
 
         criarTela(telaAtual);
 
+        // 🐻 URSO NA FASE 2 - TELA 2
+if (telaAtual === 4) {
+
+    urso.enableBody(true, 600, 500, true, true);
+
+} else {
+
+    urso.disableBody(true, true);
+}
+
         fundoInvertido = !fundoInvertido;
         background.setFlipX(fundoInvertido);
 
