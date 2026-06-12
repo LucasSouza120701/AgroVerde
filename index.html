@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroVerde | O Equilíbrio Verde no Campo - Edição Agrinho 2026</title>
+
+    <!-- Fontes carregadas pelo HTML conforme a Alura ensina -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Menu principal do topo -->
+    <nav class="barra-navegacao" id="menu-principal">
+        <div class="logo">Agro<span>Verde</span></div>
+
+        <ul class="links-navegacao menu-computador">
+            <li><a href="#">Início</a></li>
+            <li><a href="#solucoes">Soluções Sustentáveis</a></li>
+            <li><a href="#jogo">AgroGame</a></li>
+        </ul>
+
+        <!-- Botões de acessibilidade para computador -->
+        <div class="painel-acessibilidade menu-computador">
+            <button class="interruptor-tema" id="btn-theme-desktop" aria-label="Alternar modo claro e escuro">
+                <span class="bolinha-chave"></span>
+            </button>
+            <button id="btn-diminuir" title="Diminuir texto" class="botao-acessibilidade">A-</button>
+            <button id="btn-aumentar" title="Aumentar texto" class="botao-acessibilidade">A+</button>
+        </div>
+
+        <!-- Botão para abrir o menu no celular -->
+        <button class="botao-menu" id="hamburger-btn" aria-label="Abrir Menu">☰</button>
+    </nav>
+
+    <!-- Menu para celular -->
+    <div class="menu-mobile" id="mobile-menu">
+        <ul class="links-mobile">
+            <li><a href="#">Início</a></li>
+            <li><a href="#solucoes">Soluções Sustentáveis</a></li>
+            <li><a href="#jogo">AgroGame</a></li>
+
+            <!-- Botões de acessibilidade para celular -->
+            <li class="linha-acessibilidade-mobile">
+                <button class="interruptor-tema" id="btn-theme-mobile" aria-label="Alternar modo claro e escuro">
+                    <span class="bolinha-chave"></span>
+                </button>
+                <button id="btn-diminuir-mobile" class="botao-acessibilidade">A-</button>
+                <button id="btn-aumentar-mobile" class="botao-acessibilidade">A+</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Banner com imagem de fundo do topo -->
+    <header class="cabecalho-site" title="Paisagem de um campo de cultivo agrícola sustentável com o céu limpo ao fundo" aria-label="Imagem de fundo mostrando um campo agrícola sustentável">
+        <div class="container-cabecalho">
+            <div class="bloco-titulo">
+                <h1>O Equilíbrio <br> Verde no Campo</h1>
+                <p>Controlar pragas com o Manejo Integrado (MIP) <br>é uma forma inteligente de descarbonizar.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal do site -->
+    <main>
+
+        <!-- Texto de Introdução -->
+        <section class="secao-conteudo" id="introducao">
+            <div class="container-introducao">
+                <h2>O Elo entre o Campo e a Natureza</h2>
+                <p>Criei este site para mostrar que o futuro da nossa agricultura depende do equilíbrio com a natureza.<br>A ideia central do meu projeto é bem direta: quando o produtor usa a tecnologia para monitorar a lavoura e combater as pragas só no momento certo, ele evita o desperdício de defensivos agrícolas.</p>
+                <p>Com menos produtos químicos aplicados sem necessidade, a gente consegue proteger o solo, preservar os insetos bons e diminuir a poluição do ar.</p>
+                <p class="introducao-destaque">É assim que o manejo inteligente ajuda a descarbonizar o campo!</p>
+            </div>
+        </section>
+
+        <!-- Seção de Soluções com Cards -->
+        <section class="secao-conteudo" id="solucoes">
+            <div class="envelopador-solucoes">
+                <h2>Nossas Soluções Sustentáveis</h2>
+
+                <div class="recipiente-cards">
+                    <!-- Card 1: Manejo de Pragas -->
+                    <div class="card-interativo">
+                        <div class="caixa-imagem-card">
+                            <img src="img/manejo-pragas.jpg" alt="Monitoramento de lavoura" class="foto-agro-card">
+                        </div>
+                        <div class="icone-card">🐛</div>
+                        <h3>Manejo Integrado de Pragas</h3>
+                        <p>Esse controle serve para acompanhar a plantação de perto e usar a tecnologia 
+                            só na hora certa. Com base no manual de Boas Práticas da Embrapa, esse jeito 
+                            de cuidar da lavoura diminui o uso de produtos químicos e protege os insetos que ajudam a conservar a plantação.</p>
+                        <a href="./documentos/BOASPRATICASAGRICControledepragas.pdf" target="_blank" class="botao-card-oficial">Acessar Manual Embrapa</a>
+                    </div>
+
+                    <!-- Card 2: Descarbonização -->
+                    <div class="card-interativo">
+                        <div class="caixa-imagem-card">
+                            <img src="img/descarbonizacao.jpg" alt="Campo sustentável" class="foto-agro-card">
+                        </div>
+                        <div class="icone-card">🌱</div>
+                        <h3>Descarbonização</h3>
+                        <p>A descarbonização serve para diminuir a quantidade de carbono jogada no ar. 
+                            No campo, como é indicado na Cartilha ABC+ do Paraná,quando a gente evita usar o trator sem necessidade e economiza nos 
+                            produtos da lavoura, ajudamos a limpar o ar e a combater o efeito estufa.</p>
+                        <a href="./documentos/cartilha_abc_pr.pdf" target="_blank" class="botao-card-oficial">Ver Cartilha ABC+ PR</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção da Tabela Comparativa -->
+        <section class="secao-tabela-agro">
+            <div class="tabela-container-agro">
+                <h3>Comparando os Modelos de Agricultura</h3>
+                <table class="tabela-agro">
+                    <thead>
+                        <tr>
+                            <th>Prática Monitorada</th>
+                            <th>Agricultura Tradicional</th>
+                            <th>Agricultura Sustentável</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Uso de Defensivos</strong></td>
+                            <td>Aplicação em dates fixas, gerando desperdício e gastos desnecessários.</td>
+                            <td>Aplicação planejada, usando o produto apenas se as pragas surgirem na lavoura.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Insetos Benéficos</strong></td>
+                            <td>Os insetos que ajudam a planta acabam eliminados junto com as pragas.</td>
+                            <td>Os insetos benéficos são preservados para ajudar a proteger o ecossistema.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Emissão de Carbono</strong></td>
+                            <td>Uso excessivo de tratores e insumos, aumentando os gases poluentes.</td>
+                            <td>Redução das viagens de trator, economizando combustível e limpando o ar.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Seção do AgroGame -->
+        <section class="secao-conteudo secao-jogo" id="jogo">
+            <div class="alinhador-jogo">
+                <h2 class="titulo-jogo">AgroGame Interativo</h2>
+                <p class="descricao-jogo">
+                    Coloque os seus conhecimentos em prática! Divirta-se com o nosso desafio interativo focado no
+                    manejo inteligente de pragas e na descarbonização do campo.
+                </p>
+
+                <div id="container-do-seu-jogo" class="caixa-jogo-area">
+                    <iframe src="AGRINHO-gamesxx/index.html" class="janela-do-jogo" id="iframe-jogo" title="AgroGame Interativo"></iframe>
+                    
+                    <!-- Botão de Tela Cheia -->
+                    <button id="btn-tela-cheia" class="botao-fullscreen" title="Jogar em Tela Cheia">
+                        📺 Ampliar Jogo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+       <!-- Rodapé do site -->
+    <footer class="rodape-site">
+        <div class="container-rodape">
+            <p class="rodape-agradecimento">Projeto desenvolvido para o Concurso Agrinho 2026</p>
+            <p class="rodape-creditos">Desenvolvido por: <strong>Lucas</strong> | Colégio Estadual Professor Francisco VilaNueva</p>
+            <p class="rodape-creditos">© Agro<span>Verde</span> - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
