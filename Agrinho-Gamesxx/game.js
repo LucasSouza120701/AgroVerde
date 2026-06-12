@@ -63,6 +63,10 @@ let lagartaViva = true;
 
 let direcaoLagarta = 1;
 
+let urso;
+let ursoFrame = 0;
+let cutsceneUrsoAberta = false;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -178,6 +182,8 @@ function preload() {
     this.load.image('ataque2', 'assets/ataque2.png');
     this.load.image('ataque3', 'assets/ataque3.png');
     this.load.image('ataque4', 'assets/ataque4.png');
+    this.load.image('urso1', 'assets/urso1.png');
+    this.load.image('urso2', 'assets/urso2.png');
 
 }
 
@@ -244,6 +250,13 @@ function create() {
 
     lagarta.setActive(false);
     lagarta.setVisible(false);
+
+    // 🐻 URSO NPC
+   urso = this.physics.add.sprite(600, 520, 'urso1');
+   urso.setScale(1);
+   urso.body.allowGravity = false;
+
+urso.disableBody(true, true);
 
     this.physics.add.collider(player, platforms);
 
@@ -388,6 +401,21 @@ function perderVida() {
 function update() {
 
     if (!gameStarted) return;
+
+    // 🐻 ANIMAÇÃO DO URSO
+if (urso && urso.active) {
+    ursoFrame++;
+
+    if (ursoFrame < 30) {
+        urso.setTexture('urso1');
+    }
+    else if (ursoFrame < 60) {
+        urso.setTexture('urso2');
+    }
+    else {
+        ursoFrame = 0;
+    }
+}
 
     // 🐛 MOVIMENTO DA LAGARTA
 if (lagarta && lagarta.active) {
