@@ -236,7 +236,7 @@ function create() {
    espada.body.allowGravity = false;
     
 
-    lagarta = this.physics.add.sprite(600, 500, 'lagarta');
+    lagarta = this.physics.add.sprite(600, 450, 'lagarta');
     lagarta.setScale(1.5);
     lagarta.body.allowGravity = false;
 
