@@ -364,6 +364,10 @@ function conversarComUrso() {
     falouComUrso = true;
     gameStarted = false;
 
+    const escuroUrso = this.add.rectangle(400, 300, 800, 600, 0x000000);
+    escuroUrso.setAlpha(0.75);
+    escuroUrso.setDepth(19);
+
     falaUrso = this.add.image(400, 300, 'ursofala1');
     falaUrso.setDisplaySize(800, 600);
     falaUrso.setDepth(20);
@@ -385,6 +389,8 @@ function conversarComUrso() {
 
         else {
             falaUrso.destroy();
+            escuroUrso.destroy();
+
             gameStarted = true;
         }
     });
