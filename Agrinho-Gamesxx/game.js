@@ -67,6 +67,10 @@ let urso;
 let ursoFrame = 0;
 let cutsceneUrsoAberta = false;
 
+let falouComUrso = false;
+let falaUrso;
+let etapaFalaUrso = 1;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -176,6 +180,9 @@ function preload() {
     this.load.image('ataque4', 'assets/ataque4.png');
     this.load.image('urso1', 'assets/urso1.png');
     this.load.image('urso2', 'assets/urso2.png');
+    this.load.image('ursofala1', 'assets/ursofala1.png');
+    this.load.image('ursofala2', 'assets/ursofala2.png');
+    this.load.image('ursofala3', 'assets/ursofala3.png');
 
 }
 
@@ -253,6 +260,7 @@ urso.disableBody(true, true);
     this.physics.add.collider(player, platforms);
 
     this.physics.add.overlap(player, lagarta, perderVida, null, this);
+    this.physics.add.overlap(player, urso, conversarComUrso, null, this);
     this.physics.add.overlap(player, espada, pegarEspada, null, this);
 
     cursors = this.input.keyboard.createCursorKeys();
@@ -347,6 +355,39 @@ function pegarEspada(player, espada) {
     espada.destroy();
 
     console.log("PEGOU A ESPADA!");
+}
+
+function conversarComUrso() {
+
+    if (falouComUrso) return;
+
+    falouComUrso = true;
+    gameStarted = false;
+
+    falaUrso = this.add.image(400, 300, 'ursofala1');
+    falaUrso.setDisplaySize(800, 600);
+    falaUrso.setDepth(20);
+    falaUrso.setInteractive();
+
+    falaUrso.on('pointerdown', () => {
+
+        if (etapaFalaUrso === 1) {
+            etapaFalaUrso = 2;
+            falaUrso.setTexture('ursofala2');
+            falaUrso.setDisplaySize(800, 600);
+        }
+
+        else if (etapaFalaUrso === 2) {
+            etapaFalaUrso = 3;
+            falaUrso.setTexture('ursofala3');
+            falaUrso.setDisplaySize(800, 600);
+        }
+
+        else {
+            falaUrso.destroy();
+            gameStarted = true;
+        }
+    });
 }
 
 function perderVida() {
