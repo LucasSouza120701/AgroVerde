@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuGavetaCelular = document.getElementById('mobile-menu');
     const corpoPagina = document.body;
 
-    // ==========================================
-    // 1. ANIMAÇÃO DA BARRA DE NAVEGAÇÃO AO ROLAR
-    // ==========================================
+  
+    //ANIMAÇÃO DA BARRA DE NAVEGAÇÃO AO ROLAR
+   
     if (barraNavegacao) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 40) {
@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ==========================================
-    // 2. FUNÇÕES PARA O MENU MOBILE (CELULAR)
-    // ==========================================
+    
+    // FUNÇÕES PARA O MENU MOBILE (CELULAR)
+   
     function alternarMenuCelular() {
         if (botaoMenu && menuGavetaCelular) {
             botaoMenu.classList.toggle('active');
