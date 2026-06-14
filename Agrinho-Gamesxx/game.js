@@ -246,6 +246,7 @@ function create() {
     player.setScale(2);
     player.setBounce(0.1);
     player.setCollideWorldBounds(true);
+    player.setDepth(5);
 
     // ⚔️ ESPADA
    espada = this.physics.add.sprite(400, 400, 'espada');
@@ -268,6 +269,7 @@ function create() {
    // 🌱 MUDA
     muda = this.add.image(400, 520, 'muda');
     muda.setScale(0.5);
+    muda.setDepth(0);
     muda.setVisible(false);
 
     lagarta.setActive(false);
