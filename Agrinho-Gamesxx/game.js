@@ -249,6 +249,13 @@ function create() {
 
 urso.disableBody(true, true);
 
+// 👨‍🌾🐞 FAZENDEIRO + JOANINHA
+fazendeiroJoaninha = this.physics.add.sprite(600, 520, 'fazendeirojoaninha1');
+fazendeiroJoaninha.setScale(1);
+fazendeiroJoaninha.body.allowGravity = false;
+
+fazendeiroJoaninha.disableBody(true, true);
+
     this.physics.add.collider(player, platforms);
 
     this.physics.add.overlap(player, lagarta, perderVida, null, this);
@@ -448,6 +455,21 @@ if (urso && urso.active) {
     }
 }
 
+// 👨‍🌾🐞 ANIMAÇÃO DO FAZENDEIRO + JOANINHA
+if (fazendeiroJoaninha && fazendeiroJoaninha.active) {
+    fazendeiroFrame++;
+
+    if (fazendeiroFrame < 30) {
+        fazendeiroJoaninha.setTexture('fazendeirojoaninha1');
+    }
+    else if (fazendeiroFrame < 60) {
+        fazendeiroJoaninha.setTexture('fazendeirojoaninha2');
+    }
+    else {
+        fazendeiroFrame = 0;
+    }
+}
+
     // 🐛 MOVIMENTO DA LAGARTA
 if (lagarta && lagarta.active) {
 
@@ -552,6 +574,13 @@ if (atacando) {
         player.y = 300;
 
         criarTela(telaAtual);
+
+        // 👨‍🌾🐞 FAZENDEIRO + JOANINHA NA FASE 1 - TELA 2
+if (telaAtual === 2) {
+    fazendeiroJoaninha.enableBody(true, 600, 520, true, true);
+} else {
+    fazendeiroJoaninha.disableBody(true, true);
+}
 
         // 🐻 URSO NA FASE 2 - TELA 2
 if (telaAtual === 4) {
