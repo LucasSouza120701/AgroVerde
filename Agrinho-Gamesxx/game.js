@@ -245,7 +245,7 @@ function create() {
     lagarta.setVisible(false);
 
     // 🐻 URSO NPC
-   urso = this.physics.add.sprite(600, 570, 'urso1');
+   urso = this.physics.add.sprite(600, 590, 'urso1');
    urso.setScale(1);
    urso.setOrigin(0.5, 1);
    urso.body.allowGravity = false;
@@ -253,7 +253,7 @@ function create() {
 urso.disableBody(true, true);
 
 // 👨‍🌾🐞 FAZENDEIRO + JOANINHA
-fazendeiroJoaninha = this.physics.add.sprite(600, 550, 'fazendeirojoaninha1');
+fazendeiroJoaninha = this.physics.add.sprite(600, 570, 'fazendeirojoaninha1');
 fazendeiroJoaninha.setScale(2);
 fazendeiroJoaninha.setOrigin(0.5, 1);
 fazendeiroJoaninha.body.allowGravity = false;
