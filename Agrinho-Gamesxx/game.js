@@ -581,7 +581,7 @@ if (atacando) {
 
         // 👨‍🌾🐞 FAZENDEIRO + JOANINHA NA FASE 1 - TELA 2
 if (telaAtual === 2) {
-    fazendeiroJoaninha.enableBody(true, 600, 580, true, true);
+    fazendeiroJoaninha.enableBody(true, 600, 575, true, true);
 } else {
     fazendeiroJoaninha.disableBody(true, true);
 }
