@@ -366,29 +366,34 @@ fazendeiroJoaninha.disableBody(true, true);
 
 function atacarLagarta() {
 
-    if (!lagartaViva) return;
+    atacarUmaLagarta(lagarta, "lagarta1");
+    atacarUmaLagarta(lagarta2, "lagarta2");
+}
 
-    let alcance = 180;
+function atacarUmaLagarta(inimigo, nome) {
 
-    let atacouParaDireita = !player.flipX;
+    if (!inimigo || !inimigo.active) return;
 
-    let lagartaNaFrente = false;
+    const alcance = 230;
+    const alturaPermitida = 140;
 
-    if (atacouParaDireita && lagarta.x > player.x && lagarta.x < player.x + alcance) {
-        lagartaNaFrente = true;
-    }
+    const atacandoDireita = !player.flipX;
 
-    if (!atacouParaDireita && lagarta.x < player.x && lagarta.x > player.x - alcance) {
-        lagartaNaFrente = true;
-    }
+    const estaNaFrenteDireita =
+        atacandoDireita &&
+        inimigo.x > player.x &&
+        inimigo.x < player.x + alcance;
 
-    let alturaParecida = Math.abs(player.y - lagarta.y) < 120;
+    const estaNaFrenteEsquerda =
+        !atacandoDireita &&
+        inimigo.x < player.x &&
+        inimigo.x > player.x - alcance;
 
-    if (lagartaNaFrente && alturaParecida) {
-        lagarta.disableBody(true, true);
-        lagartaViva = false;
+    const alturaParecida = Math.abs(player.y - inimigo.y) < alturaPermitida;
 
-        console.log("LAGARTA MORTA!");
+    if ((estaNaFrenteDireita || estaNaFrenteEsquerda) && alturaParecida) {
+        inimigo.disableBody(true, true);
+        console.log(nome + " morreu!");
     }
 }
 
@@ -476,6 +481,10 @@ function perderVida() {
 
     if (tomandoDano) return;
 
+     if (tomandoDano) return;
+     if (atacando) return;
+
+
     somDano.play();
 
     tomandoDano = true;
@@ -502,7 +511,10 @@ function perderVida() {
         background.setTexture('background1');
         criarTela(1);
 
-        lagarta.disableBody(true, true);
+        muda.setVisible(false);
+
+       lagarta.disableBody(true, true);
+       lagarta2.disableBody(true, true);
 
         player.x = 50;
         player.y = 300;
@@ -704,7 +716,7 @@ if (telaAtual === 4) {
 
                 lagarta.enableBody(true, 600, 550, true, true);
 
-                lagarta2.enableBody(true, 300, 550, true, true);
+                lagarta2.enableBody(true, 180, 550, true, true);
                 lagarta2.body.allowGravity = false;
                 lagarta2.setVelocityX(-80);
 
