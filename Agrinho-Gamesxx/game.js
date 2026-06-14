@@ -78,6 +78,8 @@ let falouComFazendeiro = false;
 let falaFazendeiro;
 let etapaFalaFazendeiro = 1;
 
+let muda;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -188,6 +190,7 @@ function preload() {
     this.load.image('fazfala6', 'assets/fazfala6.png');
     this.load.image('fazfala7', 'assets/fazfala7.png');
     this.load.image('fazfala8', 'assets/fazfala8.png');
+    this.load.image('muda', 'assets/muda.png');
 
 }
 
@@ -249,6 +252,11 @@ function create() {
     lagarta = this.physics.add.sprite(600, 450, 'lagarta');
     lagarta.setScale(1.5);
     lagarta.body.allowGravity = false;
+
+    // 🌱 MUDA
+    muda = this.add.image(400, 520, 'muda');
+    muda.setScale(1);
+    muda.setVisible(false);
 
     lagarta.disableBody(true, true);
 
@@ -342,21 +350,29 @@ fazendeiroJoaninha.disableBody(true, true);
 });
 
 }
+
 function atacarLagarta() {
 
     if (!lagartaViva) return;
 
-    const distancia = Phaser.Math.Distance.Between(
-        player.x,
-        player.y,
-        lagarta.x,
-        lagarta.y
-    );
+    let alcance = 180;
 
-    if (distancia < 215) {
+    let atacouParaDireita = !player.flipX;
 
+    let lagartaNaFrente = false;
+
+    if (atacouParaDireita && lagarta.x > player.x && lagarta.x < player.x + alcance) {
+        lagartaNaFrente = true;
+    }
+
+    if (!atacouParaDireita && lagarta.x < player.x && lagarta.x > player.x - alcance) {
+        lagartaNaFrente = true;
+    }
+
+    let alturaParecida = Math.abs(player.y - lagarta.y) < 120;
+
+    if (lagartaNaFrente && alturaParecida) {
         lagarta.disableBody(true, true);
-
         lagartaViva = false;
 
         console.log("LAGARTA MORTA!");
