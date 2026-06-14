@@ -253,7 +253,7 @@ urso.disableBody(true, true);
 
 // 👨‍🌾🐞 FAZENDEIRO + JOANINHA
 fazendeiroJoaninha = this.physics.add.sprite(600, 520, 'fazendeirojoaninha1');
-fazendeiroJoaninha.setScale(1.5);
+fazendeiroJoaninha.setScale(2);
 fazendeiroJoaninha.body.allowGravity = false;
 
 fazendeiroJoaninha.disableBody(true, true);
