@@ -90,22 +90,10 @@ function criarTela(numero) {
     // FASE 1 - TELA 2
     else if (numero === 2) {
 
-        platforms.create(400, 590, 'platform')
-            .setDisplaySize(800, 40)
-            .refreshBody();
-
-        platforms.create(200, 500, 'platform')
-            .setDisplaySize(120, 40)
-            .refreshBody();
-
-        platforms.create(400, 400, 'platform')
-            .setDisplaySize(120, 40)
-            .refreshBody();
-
-        platforms.create(600, 300, 'platform')
-            .setDisplaySize(120, 40)
-            .refreshBody();
-    }
+    platforms.create(400, 590, 'platform')
+        .setDisplaySize(800, 40)
+        .refreshBody();
+}
 
     // FASE 2 - TELA 1
     else if (numero === 3) {
