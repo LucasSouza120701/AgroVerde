@@ -311,6 +311,10 @@ fazendeiroJoaninha.disableBody(true, true);
     
     play.on('pointerdown', () => {
 
+        if (!musica.isPlaying) {
+        musica.play();
+}
+
     const scene = this;
 
     sky.destroy();
@@ -358,7 +362,6 @@ fazendeiroJoaninha.disableBody(true, true);
 
         barraVida.setVisible(true);
 
-        musica.play();
     }
 });
 
