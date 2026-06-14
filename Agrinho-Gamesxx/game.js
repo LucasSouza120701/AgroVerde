@@ -562,6 +562,21 @@ if (lagarta && lagarta.active) {
 
     lagarta.setVelocityX(80 * direcaoLagarta);
 }
+// 🐛 MOVIMENTO DA LAGARTA 2
+if (lagarta2 && lagarta2.active) {
+
+    if (lagarta2.x > 350) {
+        direcaoLagarta2 = -1;
+        lagarta2.setFlipX(true);
+    }
+
+    if (lagarta2.x < 180) {
+        direcaoLagarta2 = 1;
+        lagarta2.setFlipX(false);
+    }
+
+    lagarta2.setVelocityX(80 * direcaoLagarta2);
+}
 
     const onGround = player.body.blocked.down;
    if (Phaser.Input.Keyboard.JustDown(spaceKey) && temEspada && !atacando) {
@@ -689,7 +704,7 @@ if (telaAtual === 4) {
 
                 lagarta.enableBody(true, 600, 550, true, true);
 
-                lagarta2.enableBody(true, 200, 550, true, true);
+                lagarta2.enableBody(true, 300, 550, true, true);
                 lagarta2.body.allowGravity = false;
                 lagarta2.setVelocityX(-80);
 
