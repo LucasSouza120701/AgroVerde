@@ -80,6 +80,10 @@ let etapaFalaFazendeiro = 1;
 
 let muda;
 
+let lagarta2;
+let lagarta2Viva = true;
+let direcaoLagarta2 = -1;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -252,13 +256,19 @@ function create() {
     lagarta = this.physics.add.sprite(600, 450, 'lagarta');
     lagarta.setScale(1.5);
     lagarta.body.allowGravity = false;
+    
+    lagarta.disableBody(true, true);
 
-    // 🌱 MUDA
+    lagarta2 = this.physics.add.sprite(200, 450, 'lagarta');
+    lagarta2.setScale(1.5);
+    lagarta2.body.allowGravity = false;
+
+    lagarta2.disableBody(true, true);
+
+   // 🌱 MUDA
     muda = this.add.image(400, 520, 'muda');
     muda.setScale(1);
     muda.setVisible(false);
-
-    lagarta.disableBody(true, true);
 
     lagarta.setActive(false);
     lagarta.setVisible(false);
@@ -282,6 +292,7 @@ fazendeiroJoaninha.disableBody(true, true);
     this.physics.add.collider(player, platforms);
 
     this.physics.add.overlap(player, lagarta, perderVida, null, this);
+    this.physics.add.overlap(player, lagarta2, perderVida, null, this);
     this.physics.add.overlap(player, urso, conversarComUrso, null, this);
     this.physics.add.overlap(player, fazendeiroJoaninha, conversarComFazendeiro, null, this);
     this.physics.add.overlap(player, espada, pegarEspada, null, this);
@@ -673,6 +684,10 @@ if (telaAtual === 4) {
                 background.setTexture('background3');
 
                 lagarta.enableBody(true, 600, 550, true, true);
+
+                lagarta2.enableBody(true, 200, 550, true, true);
+                lagarta2.body.allowGravity = false;
+                lagarta2.setVelocityX(-80);
 
                 lagarta.body.allowGravity = false;
                 lagarta.setVelocityX(80);
