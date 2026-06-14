@@ -175,6 +175,8 @@ function preload() {
     this.load.image('ursofala1', 'assets/ursofala1.png');
     this.load.image('ursofala2', 'assets/ursofala2.png');
     this.load.image('ursofala3', 'assets/ursofala3.png');
+    this.load.image('fazendeirojoaninha1', 'assets/fazendeirojoaninha1.png');
+    this.load.image('fazendeirojoaninha2', 'assets/fazendeirojoaninha2.png');
 
 }
 
