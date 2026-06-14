@@ -71,6 +71,10 @@ let falouComUrso = false;
 let falaUrso;
 let etapaFalaUrso = 1;
 
+let fazendeiroJoaninha;
+let fazendeiroFrame = 0;
+let falouComFazendeiro = false;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
