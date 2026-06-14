@@ -267,7 +267,7 @@ function create() {
 
    // 🌱 MUDA
     muda = this.add.image(400, 520, 'muda');
-    muda.setScale(1);
+    muda.setScale(0.5);
     muda.setVisible(false);
 
     lagarta.setActive(false);
