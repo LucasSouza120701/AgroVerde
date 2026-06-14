@@ -75,6 +75,9 @@ let fazendeiroJoaninha;
 let fazendeiroFrame = 0;
 let falouComFazendeiro = false;
 
+let falaFazendeiro;
+let etapaFalaFazendeiro = 1;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -177,6 +180,14 @@ function preload() {
     this.load.image('ursofala3', 'assets/ursofala3.png');
     this.load.image('fazendeirojoaninha1', 'assets/fazendeirojoaninha1.png');
     this.load.image('fazendeirojoaninha2', 'assets/fazendeirojoaninha2.png');
+    this.load.image('fazfala1', 'assets/fazfala1.png');
+    this.load.image('fazfala2', 'assets/fazfala2.png');
+    this.load.image('fazfala3', 'assets/fazfala3.png');
+    this.load.image('fazfala4', 'assets/fazfala4.png');
+    this.load.image('fazfala5', 'assets/fazfala5.png');
+    this.load.image('fazfala6', 'assets/fazfala6.png');
+    this.load.image('fazfala7', 'assets/fazfala7.png');
+    this.load.image('fazfala8', 'assets/fazfala8.png');
 
 }
 
@@ -264,6 +275,7 @@ fazendeiroJoaninha.disableBody(true, true);
 
     this.physics.add.overlap(player, lagarta, perderVida, null, this);
     this.physics.add.overlap(player, urso, conversarComUrso, null, this);
+    this.physics.add.overlap(player, fazendeiroJoaninha, conversarComFazendeiro, null, this);
     this.physics.add.overlap(player, espada, pegarEspada, null, this);
 
     cursors = this.input.keyboard.createCursorKeys();
@@ -358,6 +370,38 @@ function pegarEspada(player, espada) {
     espada.destroy();
 
     console.log("PEGOU A ESPADA!");
+}
+
+function conversarComFazendeiro() {
+
+    if (falouComFazendeiro) return;
+
+    falouComFazendeiro = true;
+    gameStarted = false;
+
+    const escuroFazendeiro = this.add.rectangle(400, 300, 800, 600, 0x000000);
+    escuroFazendeiro.setAlpha(0.75);
+    escuroFazendeiro.setDepth(19);
+
+    falaFazendeiro = this.add.image(400, 300, 'fazfala1');
+    falaFazendeiro.setDisplaySize(800, 600);
+    falaFazendeiro.setDepth(20);
+    falaFazendeiro.setInteractive();
+
+    falaFazendeiro.on('pointerdown', () => {
+
+        etapaFalaFazendeiro++;
+
+        if (etapaFalaFazendeiro <= 8) {
+            falaFazendeiro.setTexture('fazfala' + etapaFalaFazendeiro);
+            falaFazendeiro.setDisplaySize(800, 600);
+        } else {
+            falaFazendeiro.destroy();
+            escuroFazendeiro.destroy();
+
+            gameStarted = true;
+        }
+    });
 }
 
 function conversarComUrso() {
