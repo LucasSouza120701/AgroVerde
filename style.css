@@ -620,6 +620,36 @@ display: block;
 width: 100%;  
 } 
 
+ .tabela-agro thead tr {    
+position: absolute;   
+top: -9999px;    
+left: -9999px;  
+} 
+
+.tabela-agro tr {   
+border: 1px solid var(--cor-borda-suave);   
+border-radius: 8px;     
+margin-bottom: 15px;    
+padding: 10px;   
+background-color: rgba(255, 255, 255, 0.01); 
+} 
+
+body.light-mode .tabela-agro tr {   
+background-color: rgba(0, 0, 0, 0.01); 
+ } 
+
+.tabela-agro td {   
+border: none;   
+border-bottom: 1px dashed var(--cor-borda-suave);    
+position: relative;     
+padding: 10px 5px;  
+text-align: left;  
+} 
+.tabela-agro td:last-child {
+border-bottom: none; 
+  } 
+} 
+
 /*Rodapé*/
 /* Estilização do Rodapé */
 .rodape-site {
