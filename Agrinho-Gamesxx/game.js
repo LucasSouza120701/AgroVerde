@@ -589,7 +589,7 @@ if (telaAtual === 2) {
         // 🐻 URSO NA FASE 2 - TELA 2
 if (telaAtual === 4) {
 
-    urso.enableBody(true, 600, 500, true, true);
+    urso.enableBody(true, 600, 560, true, true);
 
 } else {
 
