@@ -253,7 +253,7 @@ function create() {
 urso.disableBody(true, true);
 
 // 👨‍🌾🐞 FAZENDEIRO + JOANINHA
-fazendeiroJoaninha = this.physics.add.sprite(600, 570, 'fazendeirojoaninha1');
+fazendeiroJoaninha = this.physics.add.sprite(600, 550, 'fazendeirojoaninha1');
 fazendeiroJoaninha.setScale(2);
 fazendeiroJoaninha.setOrigin(0.5, 1);
 fazendeiroJoaninha.body.allowGravity = false;
@@ -581,7 +581,7 @@ if (atacando) {
 
         // 👨‍🌾🐞 FAZENDEIRO + JOANINHA NA FASE 1 - TELA 2
 if (telaAtual === 2) {
-    fazendeiroJoaninha.enableBody(true, 600, 550, true, true);
+    fazendeiroJoaninha.enableBody(true, 600, 570, true, true);
 } else {
     fazendeiroJoaninha.disableBody(true, true);
 }
