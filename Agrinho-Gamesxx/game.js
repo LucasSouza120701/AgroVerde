@@ -84,6 +84,9 @@ let lagarta2;
 let lagarta2Viva = true;
 let direcaoLagarta2 = -1;
 
+let vidaLagarta = 2;
+let vidaLagarta2 = 2;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -379,7 +382,6 @@ function atacarUmaLagarta(inimigo, nome) {
 
     const alcance = 230;
     const alturaPermitida = 140;
-
     const atacandoDireita = !player.flipX;
 
     const estaNaFrenteDireita =
@@ -395,8 +397,24 @@ function atacarUmaLagarta(inimigo, nome) {
     const alturaParecida = Math.abs(player.y - inimigo.y) < alturaPermitida;
 
     if ((estaNaFrenteDireita || estaNaFrenteEsquerda) && alturaParecida) {
-        inimigo.disableBody(true, true);
-        console.log(nome + " morreu!");
+
+        if (nome === "lagarta1") {
+            vidaLagarta--;
+
+            if (vidaLagarta <= 0) {
+                inimigo.disableBody(true, true);
+                console.log("lagarta1 morreu!");
+            }
+        }
+
+        if (nome === "lagarta2") {
+            vidaLagarta2--;
+
+            if (vidaLagarta2 <= 0) {
+                inimigo.disableBody(true, true);
+                console.log("lagarta2 morreu!");
+            }
+        }
     }
 }
 
@@ -724,6 +742,10 @@ function update() {
                 lagarta2.enableBody(true, 180, 550, true, true);
                 lagarta2.body.allowGravity = false;
                 lagarta2.setVelocityX(-80);
+
+                vidaLagarta = 2;
+                vidaLagarta2 = 2;
+
             }
 
             else if (faseAtual === 4) {
