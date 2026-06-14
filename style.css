@@ -609,6 +609,17 @@ body.light-mode .botao-fullscreen {
     display: none;
 }
 
+@media (max-width: 680px) { 
+.tabela-agro,  
+.tabela-agro thead,  
+.tabela-agro tbody, 
+.tabela-agro th,   
+.tabela-agro td,  
+.tabela-agro tr {       
+display: block;   
+width: 100%;  
+} 
+
 /*Rodapé*/
 /* Estilização do Rodapé */
 .rodape-site {
