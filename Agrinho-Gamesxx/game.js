@@ -530,99 +530,100 @@ function update() {
     if (!gameStarted) return;
 
     // 🐻 ANIMAÇÃO DO URSO
-if (urso && urso.active) {
-    ursoFrame++;
+    if (urso && urso.active) {
+        ursoFrame++;
 
-    if (ursoFrame < 30) {
-        urso.setTexture('urso1');
-    }
-    else if (ursoFrame < 60) {
-        urso.setTexture('urso2');
-    }
-    else {
-        ursoFrame = 0;
-    }
-}
-
-// 👨‍🌾🐞 ANIMAÇÃO DO FAZENDEIRO + JOANINHA
-if (fazendeiroJoaninha && fazendeiroJoaninha.active) {
-    fazendeiroFrame++;
-
-    if (fazendeiroFrame < 30) {
-        fazendeiroJoaninha.setTexture('fazendeirojoaninha1');
-    }
-    else if (fazendeiroFrame < 60) {
-        fazendeiroJoaninha.setTexture('fazendeirojoaninha2');
-    }
-    else {
-        fazendeiroFrame = 0;
-    }
-}
-
-  // 🐛 MOVIMENTO DA LAGARTA 1
-if (lagarta && lagarta.active) {
-
-    if (lagarta.x > 700) {
-        direcaoLagarta = -1;
-        lagarta.setFlipX(true);
+        if (ursoFrame < 30) {
+            urso.setTexture('urso1');
+        }
+        else if (ursoFrame < 60) {
+            urso.setTexture('urso2');
+        }
+        else {
+            ursoFrame = 0;
+        }
     }
 
-    if (lagarta.x < 500) {
-        direcaoLagarta = 1;
-        lagarta.setFlipX(false);
+    // 👨‍🌾🐞 ANIMAÇÃO DO FAZENDEIRO + JOANINHA
+    if (fazendeiroJoaninha && fazendeiroJoaninha.active) {
+        fazendeiroFrame++;
+
+        if (fazendeiroFrame < 30) {
+            fazendeiroJoaninha.setTexture('fazendeirojoaninha1');
+        }
+        else if (fazendeiroFrame < 60) {
+            fazendeiroJoaninha.setTexture('fazendeirojoaninha2');
+        }
+        else {
+            fazendeiroFrame = 0;
+        }
     }
 
-    lagarta.setVelocityX(80 * direcaoLagarta);
-}
+    // 🐛 MOVIMENTO DA LAGARTA 1
+    if (lagarta && lagarta.active) {
 
-// 🐛 MOVIMENTO DA LAGARTA 2
-if (lagarta2 && lagarta2.active) {
+        if (lagarta.x > 700) {
+            direcaoLagarta = -1;
+            lagarta.setFlipX(true);
+        }
 
-    if (lagarta2.x > 320) {
-        direcaoLagarta2 = -1;
-        lagarta2.setFlipX(true);
+        if (lagarta.x < 500) {
+            direcaoLagarta = 1;
+            lagarta.setFlipX(false);
+        }
+
+        lagarta.setVelocityX(80 * direcaoLagarta);
     }
 
-    if (lagarta2.x < 120) {
-        direcaoLagarta2 = 1;
-        lagarta2.setFlipX(false);
-    }
+    // 🐛 MOVIMENTO DA LAGARTA 2
+    if (lagarta2 && lagarta2.active) {
 
-    lagarta2.setVelocityX(80 * direcaoLagarta2);
-}
-}
+        if (lagarta2.x > 320) {
+            direcaoLagarta2 = -1;
+            lagarta2.setFlipX(true);
+        }
+
+        if (lagarta2.x < 120) {
+            direcaoLagarta2 = 1;
+            lagarta2.setFlipX(false);
+        }
+
+        lagarta2.setVelocityX(80 * direcaoLagarta2);
+    }
 
     const onGround = player.body.blocked.down;
-   if (Phaser.Input.Keyboard.JustDown(spaceKey) && temEspada && !atacando) {
 
-    atacando = true;
-    attackFrame = 0;
+    if (Phaser.Input.Keyboard.JustDown(spaceKey) && temEspada && !atacando) {
 
-    atacarLagarta();
-}
-if (atacando) {
-
-    attackFrame++;
-
-    if (attackFrame < 6) {
-        player.setTexture('ataque1');
-    }
-    else if (attackFrame < 12) {
-        player.setTexture('ataque2');
-    }
-    else if (attackFrame < 18) {
-        player.setTexture('ataque3');
-    }
-    else if (attackFrame < 24) {
-        player.setTexture('ataque4');
-    }
-    else {
-        atacando = false;
+        atacando = true;
         attackFrame = 0;
+
+        atacarLagarta();
     }
 
-    return;
-}
+    if (atacando) {
+
+        attackFrame++;
+
+        if (attackFrame < 6) {
+            player.setTexture('ataque1');
+        }
+        else if (attackFrame < 12) {
+            player.setTexture('ataque2');
+        }
+        else if (attackFrame < 18) {
+            player.setTexture('ataque3');
+        }
+        else if (attackFrame < 24) {
+            player.setTexture('ataque4');
+        }
+        else {
+            atacando = false;
+            attackFrame = 0;
+        }
+
+        return;
+    }
 
     // 👉 MOVIMENTO
     if (cursors.left.isDown) {
@@ -682,21 +683,18 @@ if (atacando) {
         criarTela(telaAtual);
 
         // 👨‍🌾🐞 FAZENDEIRO + JOANINHA NA FASE 1 - TELA 2
-if (telaAtual === 2) {
-    fazendeiroJoaninha.enableBody(true, 600, 575, true, true);
-} else {
-    fazendeiroJoaninha.disableBody(true, true);
-}
+        if (telaAtual === 2) {
+            fazendeiroJoaninha.enableBody(true, 600, 575, true, true);
+        } else {
+            fazendeiroJoaninha.disableBody(true, true);
+        }
 
         // 🐻 URSO NA FASE 2 - TELA 2
-if (telaAtual === 4) {
-
-    urso.enableBody(true, 600, 570, true, true);
-
-} else {
-
-    urso.disableBody(true, true);
-}
+        if (telaAtual === 4) {
+            urso.enableBody(true, 600, 570, true, true);
+        } else {
+            urso.disableBody(true, true);
+        }
 
         fundoInvertido = !fundoInvertido;
         background.setFlipX(fundoInvertido);
@@ -717,14 +715,12 @@ if (telaAtual === 4) {
                 muda.setVisible(true);
 
                 lagarta.enableBody(true, 600, 550, true, true);
+                lagarta.body.allowGravity = false;
+                lagarta.setVelocityX(80);
 
                 lagarta2.enableBody(true, 180, 550, true, true);
                 lagarta2.body.allowGravity = false;
                 lagarta2.setVelocityX(-80);
-
-                lagarta.body.allowGravity = false;
-                lagarta.setVelocityX(80);
-
             }
 
             else if (faseAtual === 4) {
