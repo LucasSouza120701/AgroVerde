@@ -247,6 +247,7 @@ function create() {
     // 🐻 URSO NPC
    urso = this.physics.add.sprite(600, 570, 'urso1');
    urso.setScale(1);
+   urso.setOrigin(0.5, 1);
    urso.body.allowGravity = false;
 
 urso.disableBody(true, true);
