@@ -559,7 +559,7 @@ if (fazendeiroJoaninha && fazendeiroJoaninha.active) {
     }
 }
 
-    // 🐛 MOVIMENTO DA LAGARTA
+  // 🐛 MOVIMENTO DA LAGARTA 1
 if (lagarta && lagarta.active) {
 
     if (lagarta.x > 700) {
@@ -574,20 +574,22 @@ if (lagarta && lagarta.active) {
 
     lagarta.setVelocityX(80 * direcaoLagarta);
 }
+
 // 🐛 MOVIMENTO DA LAGARTA 2
 if (lagarta2 && lagarta2.active) {
 
-    if (lagarta2.x > 350) {
+    if (lagarta2.x > 320) {
         direcaoLagarta2 = -1;
         lagarta2.setFlipX(true);
     }
 
-    if (lagarta2.x < 180) {
+    if (lagarta2.x < 120) {
         direcaoLagarta2 = 1;
         lagarta2.setFlipX(false);
     }
 
     lagarta2.setVelocityX(80 * direcaoLagarta2);
+}
 }
 
     const onGround = player.body.blocked.down;
