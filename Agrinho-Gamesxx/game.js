@@ -683,6 +683,8 @@ if (telaAtual === 4) {
             else if (faseAtual === 3) {
                 background.setTexture('background3');
 
+                muda.setVisible(true);
+
                 lagarta.enableBody(true, 600, 550, true, true);
 
                 lagarta2.enableBody(true, 200, 550, true, true);
