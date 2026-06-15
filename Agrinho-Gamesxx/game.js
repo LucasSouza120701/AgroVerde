@@ -93,11 +93,13 @@ let somEspada;
 
 let avisoEspada;
 
+let finalMostrado = false;
+let falaFinal;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
 
-    // FASE 1 - TELA 1
     if (numero === 1) {
 
         platforms.create(400, 590, 'platform')
@@ -109,7 +111,6 @@ function criarTela(numero) {
             .refreshBody();
     }
 
-    // FASE 1 - TELA 2
     else if (numero === 2) {
 
     platforms.create(400, 590, 'platform')
@@ -117,7 +118,6 @@ function criarTela(numero) {
         .refreshBody();
 }
 
-    // FASE 2 - TELA 1
     else if (numero === 3) {
 
         platforms.create(400, 590, 'platform')
@@ -133,7 +133,6 @@ function criarTela(numero) {
             .refreshBody();
     }
 
-    // FASE 2 - TELA 2
 else if (numero === 4) {
 
     platforms.create(400, 590, 'platform')
@@ -141,7 +140,6 @@ else if (numero === 4) {
         .refreshBody();
 }
 
-    // FASE 3+
     else {
 
         platforms.create(400, 590, 'platform')
@@ -207,6 +205,7 @@ function preload() {
     this.load.audio('lagartaDano', 'assets/lagartadano.wav');
     this.load.audio('espada', 'assets/espada.wav');
     this.load.image('espadalevitadora', 'assets/espadalevitadora.png');
+    this.load.image('finalfala1', 'assets/finalfala1.png');
 
 }
 
@@ -257,7 +256,6 @@ somEspada = this.sound.add('espada', {
     barraVida.setScale(1);
     barraVida.setVisible(false);
 
-    // ================= JOGO (cria mas só ativa depois) =================
 
     platforms = this.physics.add.staticGroup();
 
@@ -269,7 +267,6 @@ somEspada = this.sound.add('espada', {
     player.setCollideWorldBounds(true);
     player.setDepth(5);
 
-    // ⚔️ ESPADA
    espada = this.physics.add.sprite(400, 400, 'espada');
    espada.setScale(0.8);
    espada.body.allowGravity = false;
@@ -287,7 +284,6 @@ somEspada = this.sound.add('espada', {
 
     lagarta2.disableBody(true, true);
 
-   // 🌱 MUDA
     muda = this.add.image(400, 520, 'muda');
     muda.setScale(0.5);
     muda.setDepth(0);
@@ -296,7 +292,6 @@ somEspada = this.sound.add('espada', {
     lagarta.setActive(false);
     lagarta.setVisible(false);
 
-    // 🐻 URSO NPC
    urso = this.physics.add.sprite(600, 590, 'urso1');
    urso.setScale(1);
    urso.setOrigin(0.5, 1);
@@ -304,7 +299,6 @@ somEspada = this.sound.add('espada', {
 
 urso.disableBody(true, true);
 
-// 👨‍🌾🐞 FAZENDEIRO + JOANINHA
 fazendeiroJoaninha = this.physics.add.sprite(600, 550, 'fazendeirojoaninha1');
 fazendeiroJoaninha.setScale(2);
 fazendeiroJoaninha.setOrigin(0.5, 1);
@@ -327,8 +321,6 @@ fazendeiroJoaninha.disableBody(true, true);
     player.setActive(false).setVisible(false);
     platforms.setActive(false).setVisible(false);
     espada.setActive(false).setVisible(false);
-
-    // ================= START GAME =================
     
     play.on('pointerdown', () => {
 
@@ -450,7 +442,6 @@ function atacarUmaLagarta(inimigo, nome) {
             return;
         }
 
-        // 2º golpe: voa para o espaço
         if (vidaAtual <= 0) {
 
             if (inimigo.x > player.x) {
@@ -648,8 +639,6 @@ function update() {
             fazendeiroFrame = 0;
         }
     }
-
-    // 🐛 MOVIMENTO DA LAGARTA 1
     if (lagarta && lagarta.active) {
 
         if (lagarta.x > 700) {
@@ -665,7 +654,6 @@ function update() {
         lagarta.setVelocityX(80 * direcaoLagarta);
     }
 
-    // 🐛 MOVIMENTO DA LAGARTA 2
     if (lagarta2 && lagarta2.active) {
 
         if (lagarta2.x > 320) {
@@ -717,7 +705,6 @@ function update() {
         return;
     }
 
-    // 👉 MOVIMENTO
     if (cursors.left.isDown) {
 
         player.setVelocityX(-200);
@@ -758,12 +745,10 @@ function update() {
         }
     }
 
-    // 👉 PULO
     if (cursors.up.isDown && onGround) {
         player.setVelocityY(-500);
     }
 
-    // 👉 PRÓXIMA TELA
     if (player.x >= 740) {
 
         telasDaFase++;
@@ -774,21 +759,18 @@ function update() {
 
         criarTela(telaAtual);
 
-        // 🌱 MUDA APENAS NA FASE 3 TELA 1
 if (telaAtual === 5) {
     muda.setVisible(true);
 } else {
     muda.setVisible(false);
 }
 
-        // 👨‍🌾🐞 FAZENDEIRO + JOANINHA NA FASE 1 - TELA 2
         if (telaAtual === 2) {
             fazendeiroJoaninha.enableBody(true, 600, 575, true, true);
         } else {
             fazendeiroJoaninha.disableBody(true, true);
         }
 
-        // 🐻 URSO NA FASE 2 - TELA 2
         if (telaAtual === 4) {
             urso.enableBody(true, 600, 570, true, true);
         } else {
@@ -798,7 +780,6 @@ if (telaAtual === 5) {
         fundoInvertido = !fundoInvertido;
         background.setFlipX(fundoInvertido);
 
-        // A cada 2 telas muda de fase
         if (telasDaFase >= 2) {
 
             faseAtual++;
@@ -831,6 +812,54 @@ if (telaAtual === 5) {
             }
 
             console.log("FASE", faseAtual);
+
+if (faseAtual === 4 && !finalMostrado) {
+
+    finalMostrado = true;
+    gameStarted = false;
+
+    const escuroFinal = this.add.rectangle(
+        400,
+        300,
+        800,
+        600,
+        0x000000
+    );
+
+    escuroFinal.setAlpha(0.75);
+    escuroFinal.setDepth(49);
+
+    falaFinal = this.add.image(
+        400,
+        300,
+        'finalfala1'
+    );
+
+    falaFinal.setDisplaySize(800, 600);
+    falaFinal.setDepth(50);
+    falaFinal.setInteractive();
+
+    falaFinal.on('pointerdown', () => {
+
+        const fade = this.add.rectangle(
+            400,
+            300,
+            800,
+            600,
+            0x000000
+        );
+
+        fade.setDepth(100);
+        fade.setAlpha(0);
+
+        this.tweens.add({
+            targets: fade,
+            alpha: 1,
+            duration: 1000
+        });
+    });
+}
+
         }
     }
 }
