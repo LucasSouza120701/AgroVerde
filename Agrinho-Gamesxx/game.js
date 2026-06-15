@@ -89,6 +89,8 @@ let vidaLagarta2 = 2;
 
 let somLagartaDano;
 
+let somEspada;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -201,6 +203,7 @@ function preload() {
     this.load.image('fazfala8', 'assets/fazfala8.png');
     this.load.image('muda', 'assets/muda.png');
     this.load.audio('lagartaDano', 'assets/lagartadano.wav');
+    this.load.audio('espada', 'assets/espada.wav');
 
 }
 
@@ -236,6 +239,10 @@ function create() {
     volume: 0.4
 });
     somDano = this.sound.add('dano', {
+    volume: 0.8
+});
+
+somEspada = this.sound.add('espada', {
     volume: 0.8
 });
 
@@ -635,6 +642,8 @@ function update() {
     const onGround = player.body.blocked.down;
 
     if (Phaser.Input.Keyboard.JustDown(spaceKey) && temEspada && !atacando) {
+
+        somEspada.play();
 
         atacando = true;
         attackFrame = 0;
