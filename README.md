@@ -6,7 +6,7 @@ Olá! Seja bem-vindo ao repositório do meu projeto **AgroVerde**, desenvolvido 
 Criei este site com o objetivo de conscientizar a comunidade escolar sobre o tema oficial deste ano: **"Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"**.
 
 
-#  Sobre o Projeto e Fundamentação 
+#  Sobre o Projeto e Objetivos 
 
 O site funciona como uma ferramenta educativa para mostrar que o futuro da nossa agricultura depende do equilíbrio com a natureza. 
 O conteúdo foi baseado em materiais oficiais e foca em duas práticas principais:
@@ -32,7 +32,7 @@ Desenvolvi o site focando em boas práticas de programação e inclusão digital
 * `main.js` — Comportamento dos botões de acessibilidade e menus.
 * `/documentos` — Pasta contendo o PDF oficial do manual da Embrapa.
 * `/img` — Acervo de imagens otimizadas do projeto.
-* `/AGRINHO-gamesxx` — Código-fonte do jogo embutido via iframe.
+* `/Agrinho-Gamesxx` — Código-fonte do jogo embutido via iframe.
 
 
 Espero que este projeto ajude a espalhar a mensagem de que a sustentabilidade podem transformar o campo! 🚀
