@@ -415,32 +415,46 @@ function atacarUmaLagarta(inimigo, nome) {
 
         somLagartaDano.play();
 
-        let forcaEmpurrao = 250;
-
-if (inimigo.x > player.x) {
-    inimigo.setVelocityX(forcaEmpurrao);
-} else {
-    inimigo.setVelocityX(-forcaEmpurrao);
-}
-
-inimigo.setVelocityY(-250);
+        let vidaAtual;
 
         if (nome === "lagarta1") {
             vidaLagarta--;
-
-            if (vidaLagarta <= 0) {
-                inimigo.disableBody(true, true);
-                console.log("lagarta1 morreu!");
-            }
+            vidaAtual = vidaLagarta;
         }
 
         if (nome === "lagarta2") {
             vidaLagarta2--;
+            vidaAtual = vidaLagarta2;
+        }
 
-            if (vidaLagarta2 <= 0) {
-                inimigo.disableBody(true, true);
-                console.log("lagarta2 morreu!");
+        // 1º golpe: só empurra um pouco
+        if (vidaAtual > 0) {
+
+            if (inimigo.x > player.x) {
+                inimigo.setVelocityX(250);
+            } else {
+                inimigo.setVelocityX(-250);
             }
+
+            return;
+        }
+
+        // 2º golpe: voa para o espaço
+        if (vidaAtual <= 0) {
+
+            if (inimigo.x > player.x) {
+                inimigo.setVelocityX(400);
+            } else {
+                inimigo.setVelocityX(-400);
+            }
+
+            inimigo.setVelocityY(-900);
+
+            console.log(nome + " foi para o espaço!");
+
+            setTimeout(() => {
+                inimigo.disableBody(true, true);
+            }, 700);
         }
     }
 }
