@@ -91,6 +91,8 @@ let somLagartaDano;
 
 let somEspada;
 
+let avisoEspada;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -473,7 +475,24 @@ function pegarEspada(player, espada) {
 
     espada.destroy();
 
-    console.log("PEGOU A ESPADA!");
+    gameStarted = false;
+
+    avisoEspada = game.scene.scenes[0].add.image(
+        400,
+        300,
+        'espadalevitadora'
+    );
+
+    avisoEspada.setDisplaySize(800, 600);
+    avisoEspada.setDepth(50);
+    avisoEspada.setInteractive();
+
+    avisoEspada.on('pointerdown', () => {
+
+        avisoEspada.destroy();
+
+        gameStarted = true;
+    });
 }
 
 function conversarComFazendeiro() {
