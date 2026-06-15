@@ -317,7 +317,7 @@ fazendeiroJoaninha.disableBody(true, true);
     cursors = this.input.keyboard.createCursorKeys();
     spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-    // 🔴 DESATIVA NO COMEÇO (evita bug visual)
+    
     player.setActive(false).setVisible(false);
     platforms.setActive(false).setVisible(false);
     espada.setActive(false).setVisible(false);
@@ -610,7 +610,7 @@ function update() {
 
     if (!gameStarted) return;
 
-    // 🐻 ANIMAÇÃO DO URSO
+    
     if (urso && urso.active) {
         ursoFrame++;
 
@@ -625,7 +625,7 @@ function update() {
         }
     }
 
-    // 👨‍🌾🐞 ANIMAÇÃO DO FAZENDEIRO + JOANINHA
+    
     if (fazendeiroJoaninha && fazendeiroJoaninha.active) {
         fazendeiroFrame++;
 
