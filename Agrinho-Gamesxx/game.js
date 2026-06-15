@@ -206,6 +206,7 @@ function preload() {
     this.load.image('muda', 'assets/muda.png');
     this.load.audio('lagartaDano', 'assets/lagartadano.wav');
     this.load.audio('espada', 'assets/espada.wav');
+    this.load.image('espadalevitadora', 'assets/espadalevitadora.png');
 
 }
 
