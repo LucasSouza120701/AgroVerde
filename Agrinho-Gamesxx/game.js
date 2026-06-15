@@ -415,6 +415,14 @@ function atacarUmaLagarta(inimigo, nome) {
 
         somLagartaDano.play();
 
+        inimigo.setTint(0xff0000);
+
+    setTimeout(() => {
+    if (inimigo.active) {
+        inimigo.clearTint();
+    }
+}, 150);
+
         let vidaAtual;
 
         if (nome === "lagarta1") {
@@ -745,6 +753,13 @@ function update() {
         player.y = 300;
 
         criarTela(telaAtual);
+
+        // 🌱 MUDA APENAS NA FASE 3 TELA 1
+if (telaAtual === 5) {
+    muda.setVisible(true);
+} else {
+    muda.setVisible(false);
+}
 
         // 👨‍🌾🐞 FAZENDEIRO + JOANINHA NA FASE 1 - TELA 2
         if (telaAtual === 2) {
