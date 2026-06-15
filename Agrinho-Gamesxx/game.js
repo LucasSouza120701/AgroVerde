@@ -87,6 +87,8 @@ let direcaoLagarta2 = -1;
 let vidaLagarta = 2;
 let vidaLagarta2 = 2;
 
+let somLagartaDano;
+
 function criarTela(numero) {
 
     platforms.clear(true, true);
@@ -198,6 +200,7 @@ function preload() {
     this.load.image('fazfala7', 'assets/fazfala7.png');
     this.load.image('fazfala8', 'assets/fazfala8.png');
     this.load.image('muda', 'assets/muda.png');
+    this.load.audio('lagartaDano', 'assets/lagartadano.wav');
 
 }
 
@@ -235,6 +238,11 @@ function create() {
     somDano = this.sound.add('dano', {
     volume: 0.8
 });
+
+    somLagartaDano = this.sound.add('lagartaDano', {
+    volume: 0.8
+});
+
     barraVida = this.add.image(680, 40, 'vida5');
     barraVida.setScale(1);
     barraVida.setVisible(false);
@@ -397,6 +405,18 @@ function atacarUmaLagarta(inimigo, nome) {
     const alturaParecida = Math.abs(player.y - inimigo.y) < alturaPermitida;
 
     if ((estaNaFrenteDireita || estaNaFrenteEsquerda) && alturaParecida) {
+
+        somLagartaDano.play();
+
+        let forcaEmpurrao = 250;
+
+if (inimigo.x > player.x) {
+    inimigo.setVelocityX(forcaEmpurrao);
+} else {
+    inimigo.setVelocityX(-forcaEmpurrao);
+}
+
+inimigo.setVelocityY(-250);
 
         if (nome === "lagarta1") {
             vidaLagarta--;
